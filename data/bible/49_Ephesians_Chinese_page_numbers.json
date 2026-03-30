@@ -1,0 +1,57 @@
+{
+    "identifier": "80-old-testament-chinese_202308",
+    "format-version": "2",
+    "archive-hocr-tools-version": "1.1.50",
+    "confidence": 73,
+    "pages": [
+        {
+            "leafNum": 0,
+            "confidence": 87,
+            "pageNumber": "1106",
+            "pageProb": 77,
+            "wordConf": 96
+        },
+        {
+            "leafNum": 1,
+            "confidence": 67,
+            "pageNumber": "1107",
+            "pageProb": 57,
+            "wordConf": 96
+        },
+        {
+            "leafNum": 2,
+            "confidence": 73,
+            "pageNumber": "1108",
+            "pageProb": 63,
+            "wordConf": 89
+        },
+        {
+            "leafNum": 3,
+            "confidence": 63,
+            "pageNumber": "1109",
+            "pageProb": 53,
+            "wordConf": 96
+        },
+        {
+            "leafNum": 4,
+            "confidence": 75,
+            "pageNumber": "1110",
+            "pageProb": 65,
+            "wordConf": 89
+        },
+        {
+            "leafNum": 5,
+            "confidence": 71,
+            "pageNumber": "1111",
+            "pageProb": 61,
+            "wordConf": 94
+        },
+        {
+            "leafNum": 6,
+            "confidence": null,
+            "pageNumber": "",
+            "pageProb": null,
+            "wordConf": null
+        }
+    ]
+}

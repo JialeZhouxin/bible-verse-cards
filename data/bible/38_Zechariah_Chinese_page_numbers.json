@@ -1,0 +1,85 @@
+{
+    "identifier": "80-old-testament-chinese_202308",
+    "format-version": "2",
+    "archive-hocr-tools-version": "1.1.50",
+    "confidence": 76,
+    "pages": [
+        {
+            "leafNum": 0,
+            "confidence": 83,
+            "pageNumber": "865",
+            "pageProb": 73,
+            "wordConf": 96
+        },
+        {
+            "leafNum": 1,
+            "confidence": 62,
+            "pageNumber": "866",
+            "pageProb": 52,
+            "wordConf": 92
+        },
+        {
+            "leafNum": 2,
+            "confidence": 88,
+            "pageNumber": "867",
+            "pageProb": 78,
+            "wordConf": 96
+        },
+        {
+            "leafNum": 3,
+            "confidence": 62,
+            "pageNumber": "868",
+            "pageProb": 52,
+            "wordConf": 92
+        },
+        {
+            "leafNum": 4,
+            "confidence": 83,
+            "pageNumber": "869",
+            "pageProb": 73,
+            "wordConf": 96
+        },
+        {
+            "leafNum": 5,
+            "confidence": null,
+            "pageNumber": "870",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 6,
+            "confidence": 92,
+            "pageNumber": "871",
+            "pageProb": 82,
+            "wordConf": 96
+        },
+        {
+            "leafNum": 7,
+            "confidence": 62,
+            "pageNumber": "872",
+            "pageProb": 52,
+            "wordConf": 91
+        },
+        {
+            "leafNum": 8,
+            "confidence": 88,
+            "pageNumber": "873",
+            "pageProb": 78,
+            "wordConf": 96
+        },
+        {
+            "leafNum": 9,
+            "confidence": 62,
+            "pageNumber": "874",
+            "pageProb": 52,
+            "wordConf": 91
+        },
+        {
+            "leafNum": 10,
+            "confidence": null,
+            "pageNumber": "",
+            "pageProb": null,
+            "wordConf": null
+        }
+    ]
+}

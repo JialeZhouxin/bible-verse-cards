@@ -29,7 +29,19 @@ export function renderCard({ currentCard, categoryNames, levelNames, elements })
     cardCategory.textContent = categoryNames[currentCard.category] || currentCard.category;
     cardLevel.textContent = levelNames[String(currentCard.level)] || `第${currentCard.level}级`;
     cardLevel.className = `card-level level-${currentCard.level}`;
-    cardQuestion.textContent = currentCard.question;
+    
+    // 对于圣经金句卡片，显示经文内容和出处
+    if (currentCard.text && currentCard.reference) {
+        //  Bible verse card format
+        cardQuestion.innerHTML = `
+            <div class="verse-text">${currentCard.text}</div>
+            <div class="verse-reference">${currentCard.reference}</div>
+        `;
+    } else {
+        // Original question card format
+        cardQuestion.textContent = currentCard.question;
+    }
+    
     saveBtn.style.display = 'inline-block';
     shareBtn.style.display = 'inline-block';
 }

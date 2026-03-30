@@ -1,85 +1,754 @@
-export const cards = [
-    // 安慰与盼望 - 一级
-    { id: 1, level: 1, category: 'comfort', question: '耶和华靠近伤心的人，拯救灵性痛悔的人。——诗篇34:18' },
-    { id: 2, level: 1, category: 'comfort', question: '不要惧怕，因为我与你同在；不要惊惶，因为我是你的神。——以赛亚书41:10' },
-    { id: 3, level: 1, category: 'comfort', question: '凡劳苦担重担的人可以到我这里来，我就使你们得安息。——马太福音11:28' },
-    { id: 4, level: 1, category: 'comfort', question: '我虽然行过死荫的幽谷，也不怕遭害，因为你与我同在。——诗篇23:4' },
-    { id: 5, level: 1, category: 'comfort', question: '神是我们的避难所，是我们的力量，是我们在患难中随时的帮助。——诗篇46:1' },
-    { id: 6, level: 1, category: 'comfort', question: '我将我的平安赐给你们，我所赐的，不像世人所赐的。——约翰福音14:27' },
-    { id: 7, level: 1, category: 'comfort', question: '你们要将一切的忧虑卸给神，因为他顾念你们。——彼得前书5:7' },
-    { id: 8, level: 1, category: 'comfort', question: '哀恸的人有福了，因为他们必得安慰。——马太福音5:4' },
-    { id: 9, level: 1, category: 'comfort', question: '主是信实的，他必坚固你们，保护你们脱离那恶者。——帖撒罗尼迦后书3:3' },
-    { id: 10, level: 1, category: 'comfort', question: '你从水中经过，我必与你同在；你趟过江河，水必不漫过你。——以赛亚书43:2' },
+/**
+ * Bible Verse Cards Data
+ * Auto-generated from CUS (Chinese Union Version Simplified)
+ * Total: 72 verses across 7 categories
+ */
 
-    // 爱与恩典 - 一级
-    { id: 11, level: 1, category: 'love', question: '神就是爱，住在爱里面的，就是住在神里面。——约翰一书4:16' },
-    { id: 12, level: 1, category: 'love', question: '我们爱，因为神先爱我们。——约翰一书4:19' },
-    { id: 13, level: 1, category: 'love', question: '爱是恒久忍耐，又有恩慈；爱是不嫉妒，爱是不自夸。——哥林多前书13:4' },
-    { id: 14, level: 1, category: 'love', question: '如今常存的有信、有望、有爱，其中最大的是爱。——哥林多前书13:13' },
-    { id: 15, level: 1, category: 'love', question: '你们要彼此相爱，像我爱你们一样，这就是我的命令。——约翰福音15:12' },
-    { id: 16, level: 1, category: 'love', question: '耶和华有恩惠，有怜悯，不轻易发怒，且有丰盛的慈爱。——诗篇145:8' },
-    { id: 17, level: 1, category: 'love', question: '神差他独生子到世间来，使我们藉着他得生，神爱我们的心在此就显明了。——约翰一书4:9' },
-    { id: 18, level: 1, category: 'love', question: '我怎样爱你们，你们也要怎样相爱。——约翰福音13:34' },
-    { id: 19, level: 1, category: 'love', question: '但神有丰富的怜悯，因他爱我们的大爱。——以弗所书2:4' },
-    { id: 20, level: 1, category: 'love', question: '万事都互相效力，叫爱神的人得益处。——罗马书8:28' },
-
-    // 信心与信靠 - 二级
-    { id: 21, level: 2, category: 'faith', question: '信的人必有永生。——约翰福音6:47' },
-    { id: 22, level: 2, category: 'faith', question: '人非有信，就不能得神的喜悦。——希伯来书11:6' },
-    { id: 23, level: 2, category: 'faith', question: '你们若有信心像一粒芥菜种，就是对这座山说，你挪开此地。——马太福音17:20' },
-    { id: 24, level: 2, category: 'faith', question: '信就是所望之事的实底，是未见之事的确据。——希伯来书11:1' },
-    { id: 25, level: 2, category: 'faith', question: '应当一无挂虑，只要凡事藉着祷告、祈求和感谢，将你们所要的告诉神。——腓立比书4:6' },
-    { id: 26, level: 2, category: 'faith', question: '你们祈求，就给你们；寻找，就寻见；叩门，就给你们开门。——马太福音7:7' },
-    { id: 27, level: 2, category: 'faith', question: '因我们行事为人是凭着信心，不是凭着眼见。——哥林多后书5:7' },
-    { id: 28, level: 2, category: 'faith', question: '靠着爱我们的主，在这一切的事上已经得胜有余了。——罗马书8:37' },
-    { id: 29, level: 2, category: 'faith', question: '我知道我向你们所怀的意念，是赐平安的意念，不是降灾祸的意念。——耶利米书29:11' },
-    { id: 30, level: 2, category: 'faith', question: '你要专心仰赖耶和华，不可倚靠自己的聪明。——箴言3:5' },
-
-    // 力量与勇气 - 二级
-    { id: 31, level: 2, category: 'strength', question: '我靠着那加给我力量的，凡事都能做。——腓立比书4:13' },
-    { id: 32, level: 2, category: 'strength', question: '那等候耶和华的，必重新得力；他们必如鹰展翅上腾。——以赛亚书40:31' },
-    { id: 33, level: 2, category: 'strength', question: '你们当刚强壮胆，不要害怕，也不要畏惧他们。——申命记31:6' },
-    { id: 34, level: 2, category: 'strength', question: '主是我的力量，是我的盾牌，我心里倚靠他，就得帮助。——诗篇28:7' },
-    { id: 35, level: 2, category: 'strength', question: '我岂没有吩咐你吗？你当刚强壮胆！不要惧怕，也不要惊惶。——约书亚记1:9' },
-    { id: 36, level: 2, category: 'strength', question: '神赐给我们不是胆怯的心，乃是刚强、仁爱、谨守的心。——提摩太后书1:7' },
-    { id: 37, level: 2, category: 'strength', question: '疲乏的，他赐能力；软弱的，他加力量。——以赛亚书40:29' },
-    { id: 38, level: 2, category: 'strength', question: '耶和华是我的牧者，我必不至缺乏。——诗篇23:1' },
-    { id: 39, level: 2, category: 'strength', question: '你不要害怕，因为我与你同在；不要惊惶，因为我是你的神。——以赛亚书41:10' },
-    { id: 40, level: 2, category: 'strength', question: '我们四面受敌，却不被困住；心里作难，却不致失望。——哥林多后书4:8' },
-
-    // 智慧与引导 - 三级
-    { id: 41, level: 3, category: 'wisdom', question: '敬畏耶和华是智慧的开端，认识至圣者便是聪明。——箴言9:10' },
-    { id: 42, level: 3, category: 'wisdom', question: '你们若缺少智慧，应当求那厚赐与众人、也不斥责人的神，主就必赐给他。——雅各书1:5' },
-    { id: 43, level: 3, category: 'wisdom', question: '你的话是我脚前的灯，是我路上的光。——诗篇119:105' },
-    { id: 44, level: 3, category: 'wisdom', question: '你要专心仰赖耶和华，在你一切所行的事上都要认定他，他必指引你的路。——箴言3:5-6' },
-    { id: 45, level: 3, category: 'wisdom', question: '人点灯，不放在斗底下，而是放在灯台上，就照亮一家人。——马太福音5:15' },
-    { id: 46, level: 3, category: 'wisdom', question: '不要效法这个世界，只要心意更新而变化。——罗马书12:2' },
-    { id: 47, level: 3, category: 'wisdom', question: '你们要谨慎行事，不要像愚昧人，当像智慧人。——以弗所书5:15' },
-    { id: 48, level: 3, category: 'wisdom', question: '通达人见祸藏躲，愚蒙人前往受害。——箴言22:3' },
-    { id: 49, level: 3, category: 'wisdom', question: '智慧建造房屋，凿成七根柱子。——箴言9:1' },
-    { id: 50, level: 3, category: 'wisdom', question: '听劝言的，却有智慧。——箴言12:15' },
-
-    // 赦免与更新 - 三级
-    { id: 51, level: 3, category: 'forgiveness', question: '我们若认自己的罪，神是信实的，是公义的，必要赦免我们的罪。——约翰一书1:9' },
-    { id: 52, level: 3, category: 'forgiveness', question: '你们饶恕人的过犯，你们的天父也必饶恕你们的过犯。——马太福音6:14' },
-    { id: 53, level: 3, category: 'forgiveness', question: '若有人在基督里，他就是新造的人，旧事已过，都变成新的了。——哥林多后书5:17' },
-    { id: 54, level: 3, category: 'forgiveness', question: '你们的罪虽像朱红，必变成雪白；虽红如丹颜，必白如羊毛。——以赛亚书1:18' },
-    { id: 55, level: 3, category: 'forgiveness', question: '并要以恩慈相待，存怜悯的心，彼此饶恕，正如神在基督里饶恕了你们一样。——以弗所书4:32' },
-    { id: 56, level: 3, category: 'forgiveness', question: '东离西有多远，他叫我们的过犯离我们也有多远。——诗篇103:12' },
-    { id: 57, level: 3, category: 'forgiveness', question: '我涂抹了你的过犯，像厚云消散；我涂抹了你的罪恶，如薄云灭没。——以赛亚书44:22' },
-    { id: 58, level: 3, category: 'forgiveness', question: '主不算为有罪的，这人是有福的。——罗马书4:8' },
-    { id: 59, level: 3, category: 'forgiveness', question: '你们各人若不饶恕弟兄，我天父也要这样待你们了。——马太福音18:35' },
-    { id: 60, level: 3, category: 'forgiveness', question: '神赦免了你们一切过犯，便叫你们与基督一同活过来。——歌罗西书2:13' },
-
-    // 盼望与未来 - 三级
-    { id: 61, level: 3, category: 'hope', question: '盼望不至于羞耻，因为所赐给我们的圣灵将神的爱浇灌在我们心里。——罗马书5:5' },
-    { id: 62, level: 3, category: 'hope', question: '我知道我向你们所怀的意念，是赐平安的意念，不是降灾祸的意念。——耶利米书29:11' },
-    { id: 63, level: 3, category: 'hope', question: '在我父的家里有许多住处，若是没有，我就早已告诉你们了。——约翰福音14:2' },
-    { id: 64, level: 3, category: 'hope', question: '神为爱他的人所预备的，是眼睛未曾看见、耳朵未曾听见、人心也未曾想到的。——哥林多前书2:9' },
-    { id: 65, level: 3, category: 'hope', question: '我们这至暂至轻的苦楚，要为我们成就极重无比、永远的荣耀。——哥林多后书4:17' },
-    { id: 66, level: 3, category: 'hope', question: '愿恩惠、平安从神我们的父和主耶稣基督归于你们。——腓立比书1:2' },
-    { id: 67, level: 3, category: 'hope', question: '那美好的仗我已经打过了，当跑的路我已经跑尽了，所信的道我已经守住了。——提摩太后书4:7' },
-    { id: 68, level: 3, category: 'hope', question: '以后不再有死亡，也不再有悲哀、哭号、疼痛，因为以前的事都过去了。——启示录21:4' },
-    { id: 69, level: 3, category: 'hope', question: '主必再来，那日子，那时辰，没有人知道。——马太福音24:36' },
-    { id: 70, level: 3, category: 'hope', question: '愿你的国降临，愿你的旨意行在地上，如同行在天上。——马太福音6:10' },
+export const categories = [
+    { id: 'comfort', name: '安慰', icon: '🕊️', color: '#4A90E2', description: '在困难中找到神的安慰' },
+    { id: 'love', name: '爱心', icon: '❤️', color: '#E74C3C', description: '体验神无条件的爱' },
+    { id: 'faith', name: '信心', icon: '✝️', color: '#9B59B6', description: '建立坚定的信心' },
+    { id: 'strength', name: '力量', icon: '💪', color: '#F39C12', description: '从神得着力量' },
+    { id: 'wisdom', name: '智慧', icon: '📖', color: '#1ABC9C', description: '寻求从神而来的智慧' },
+    { id: 'forgiveness', name: '宽恕', icon: '🤝', color: '#3498DB', description: '学习宽恕与恩典' },
+    { id: 'hope', name: '盼望', icon: '🌟', color: '#E67E22', description: '在基督里存着盼望' }
 ];
+
+export const cards = [
+    {
+        "id": 1,
+        "category": "安慰",
+        "categoryEn": "comfort",
+        "icon": "🕊️",
+        "color": "#4A90E2",
+        "reference": "诗篇 23:1",
+        "text": "〔大卫的诗。〕耶和华是我的牧者．我必不至缺乏。",
+        "question": "这节关于\"安慰\"的经文如何触动你的心？"
+    },
+    {
+        "id": 2,
+        "category": "安慰",
+        "categoryEn": "comfort",
+        "icon": "🕊️",
+        "color": "#4A90E2",
+        "reference": "诗篇 23:4",
+        "text": "我虽然行过死荫的幽谷、也不怕遭害．因为你与我同在．你的杖、你的竿、都安慰我。",
+        "question": "这节关于\"安慰\"的经文如何触动你的心？"
+    },
+    {
+        "id": 3,
+        "category": "安慰",
+        "categoryEn": "comfort",
+        "icon": "🕊️",
+        "color": "#4A90E2",
+        "reference": "诗篇 46:1",
+        "text": "〔可拉后裔的诗歌、交与伶长、调用女音。〕　神是我们的避难所、是我们的力量、是我们在患难中随时的帮助。",
+        "question": "这节关于\"安慰\"的经文如何触动你的心？"
+    },
+    {
+        "id": 4,
+        "category": "安慰",
+        "categoryEn": "comfort",
+        "icon": "🕊️",
+        "color": "#4A90E2",
+        "reference": "诗篇 46:10",
+        "text": "你们要休息、要知道我是　神．我必在外邦中被尊崇、在遍地上也被尊崇。",
+        "question": "这节关于\"安慰\"的经文如何触动你的心？"
+    },
+    {
+        "id": 5,
+        "category": "安慰",
+        "categoryEn": "comfort",
+        "icon": "🕊️",
+        "color": "#4A90E2",
+        "reference": "诗篇 121:1-2",
+        "text": "〔上行之诗。〕我要向山举目。我的帮助从何而来。 我的帮助从造天地的耶和华而来。",
+        "question": "这节关于\"安慰\"的经文如何触动你的心？"
+    },
+    {
+        "id": 6,
+        "category": "安慰",
+        "categoryEn": "comfort",
+        "icon": "🕊️",
+        "color": "#4A90E2",
+        "reference": "以赛亚书 41:10",
+        "text": "你不要害怕、因为我与你同在．不要惊惶、因为我是你的　神．我必坚固你、我必帮助你、我必用我公义的右手扶持你。",
+        "question": "这节关于\"安慰\"的经文如何触动你的心？"
+    },
+    {
+        "id": 7,
+        "category": "安慰",
+        "categoryEn": "comfort",
+        "icon": "🕊️",
+        "color": "#4A90E2",
+        "reference": "以赛亚书 43:2",
+        "text": "你从水中经过、我必与你同在．你趟过江河、水必不漫过你．你从火中行过、必不被烧、火焰也不着在你身上。",
+        "question": "这节关于\"安慰\"的经文如何触动你的心？"
+    },
+    {
+        "id": 8,
+        "category": "安慰",
+        "categoryEn": "comfort",
+        "icon": "🕊️",
+        "color": "#4A90E2",
+        "reference": "马太福音 11:28",
+        "text": "凡劳苦担重担的人、可以到我这里来、我就使你们得安息。",
+        "question": "这节关于\"安慰\"的经文如何触动你的心？"
+    },
+    {
+        "id": 9,
+        "category": "安慰",
+        "categoryEn": "comfort",
+        "icon": "🕊️",
+        "color": "#4A90E2",
+        "reference": "马太福音 5:4",
+        "text": "哀恸的人有福了．因为他们必得安慰。",
+        "question": "这节关于\"安慰\"的经文如何触动你的心？"
+    },
+    {
+        "id": 10,
+        "category": "安慰",
+        "categoryEn": "comfort",
+        "icon": "🕊️",
+        "color": "#4A90E2",
+        "reference": "约翰福音 14:27",
+        "text": "我留下平安给你们、我将我的平安赐给你们．我所赐的、不像世人所赐的．你们心里不要忧愁、也不要胆怯。",
+        "question": "这节关于\"安慰\"的经文如何触动你的心？"
+    },
+    {
+        "id": 11,
+        "category": "安慰",
+        "categoryEn": "comfort",
+        "icon": "🕊️",
+        "color": "#4A90E2",
+        "reference": "哥林多后书 1:3-4",
+        "text": "愿颂赞归与我们的主耶稣基督的父　神、就是发慈悲的父、赐各样安慰的　神． 我们在一切患难中、他就安慰我们、叫我们能用　神所赐的安慰、去安慰那遭各样患难的人。",
+        "question": "这节关于\"安慰\"的经文如何触动你的心？"
+    },
+    {
+        "id": 12,
+        "category": "爱心",
+        "categoryEn": "love",
+        "icon": "❤️",
+        "color": "#E74C3C",
+        "reference": "约翰福音 3:16",
+        "text": "神爱世人、甚至将他的独生子赐给他们、叫一切信他的、不至灭亡、反得永生。",
+        "question": "这节关于\"爱心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 13,
+        "category": "爱心",
+        "categoryEn": "love",
+        "icon": "❤️",
+        "color": "#E74C3C",
+        "reference": "约翰福音 15:12-13",
+        "text": "你们要彼此相爱、像我爱你们一样、这就是我的命令。 人为朋友舍命、人的爱心没有比这个大的。",
+        "question": "这节关于\"爱心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 14,
+        "category": "爱心",
+        "categoryEn": "love",
+        "icon": "❤️",
+        "color": "#E74C3C",
+        "reference": "约翰福音 13:34-35",
+        "text": "我赐给你们一条新命令、乃是叫你们彼此相爱．我怎样爱你们、你们也要怎样相爱。 你们若有彼此相爱的心、众人因此就认出你们是我的门徒了。",
+        "question": "这节关于\"爱心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 15,
+        "category": "爱心",
+        "categoryEn": "love",
+        "icon": "❤️",
+        "color": "#E74C3C",
+        "reference": "罗马书 8:38-39",
+        "text": "因为我深信无论是死、是生、是天使、是掌权的、是有能的、是现在的事、是将来的事、 是高处的、是低处的、是别的受造之物、都不能叫我们与　神的爱隔绝．这爱是在我们的主基督耶稣里的。",
+        "question": "这节关于\"爱心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 16,
+        "category": "爱心",
+        "categoryEn": "love",
+        "icon": "❤️",
+        "color": "#E74C3C",
+        "reference": "罗马书 5:8",
+        "text": "惟有基督在我们还作罪人的时候为我们死、　神的爱就在此向我们显明了。",
+        "question": "这节关于\"爱心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 17,
+        "category": "爱心",
+        "categoryEn": "love",
+        "icon": "❤️",
+        "color": "#E74C3C",
+        "reference": "哥林多前书 13:4-8",
+        "text": "爱是恒久忍耐、又有恩慈．爱是不嫉妒．爱是不自夸．不张狂． 不作害羞的事．不求自己的益处．不轻易发怒．不计算人的恶． 不喜欢不义．只喜欢真理． 凡事包容．凡事相信．凡事盼望．凡事忍耐。 爱是永不止息．先知讲道之能、终必归于无有．说方言之能、终必停止、知识也终必归于无有。",
+        "question": "这节关于\"爱心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 18,
+        "category": "爱心",
+        "categoryEn": "love",
+        "icon": "❤️",
+        "color": "#E74C3C",
+        "reference": "哥林多前书 16:14",
+        "text": "凡你们所作的、都要凭爱心而作。",
+        "question": "这节关于\"爱心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 19,
+        "category": "爱心",
+        "categoryEn": "love",
+        "icon": "❤️",
+        "color": "#E74C3C",
+        "reference": "加拉太书 5:22-23",
+        "text": "圣灵所结的果子、就是仁爱、喜乐、和平、忍耐、恩慈、良善、信实、 温柔、节制．这样的事、没有律法禁止。",
+        "question": "这节关于\"爱心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 20,
+        "category": "爱心",
+        "categoryEn": "love",
+        "icon": "❤️",
+        "color": "#E74C3C",
+        "reference": "以弗所书 5:2",
+        "text": "也要凭爱心行事、正如基督爱我们、为我们舍了自己、当作馨香的供物、和祭物、献与　神。",
+        "question": "这节关于\"爱心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 21,
+        "category": "爱心",
+        "categoryEn": "love",
+        "icon": "❤️",
+        "color": "#E74C3C",
+        "reference": "约翰一书 4:7-8",
+        "text": "亲爱的弟兄阿、我们应当彼此相爱．因为爱是从　神来的．凡有爱心的、都是由　神而生、并且认识　神。 没有爱心的、就不认识　神．因为　神就是爱。",
+        "question": "这节关于\"爱心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 22,
+        "category": "爱心",
+        "categoryEn": "love",
+        "icon": "❤️",
+        "color": "#E74C3C",
+        "reference": "约翰一书 3:18",
+        "text": "小子们哪、我们相爱、不要只在言语和舌头上．总要在行为和诚实上。",
+        "question": "这节关于\"爱心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 23,
+        "category": "信心",
+        "categoryEn": "faith",
+        "icon": "✝️",
+        "color": "#9B59B6",
+        "reference": "希伯来书 11:1",
+        "text": "信就是所望之事的实底、是未见之事的确据。",
+        "question": "这节关于\"信心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 24,
+        "category": "信心",
+        "categoryEn": "faith",
+        "icon": "✝️",
+        "color": "#9B59B6",
+        "reference": "希伯来书 11:6",
+        "text": "人非有信、就不能得　神的喜悦．因为到　神面前来的人、必须信有神，且信他赏赐那寻求他的人。",
+        "question": "这节关于\"信心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 25,
+        "category": "信心",
+        "categoryEn": "faith",
+        "icon": "✝️",
+        "color": "#9B59B6",
+        "reference": "马可福音 9:23",
+        "text": "耶稣对他说、你若能信、在信的人、凡事都能。",
+        "question": "这节关于\"信心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 26,
+        "category": "信心",
+        "categoryEn": "faith",
+        "icon": "✝️",
+        "color": "#9B59B6",
+        "reference": "马可福音 11:22-24",
+        "text": "耶稣回答说、你们当信服　神。 我实在告诉你们、无论何人对这座山说、你挪开此地投在海里．他若心里不疑惑、只信他所说的必成、就必给他成了。 所以我告诉你们、凡你们祷告祈求的、无论是甚么、只要信是得着的、就必得着。",
+        "question": "这节关于\"信心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 27,
+        "category": "信心",
+        "categoryEn": "faith",
+        "icon": "✝️",
+        "color": "#9B59B6",
+        "reference": "罗马书 10:17",
+        "text": "可见信道是从听道来的、听道是从基督的话来的。",
+        "question": "这节关于\"信心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 28,
+        "category": "信心",
+        "categoryEn": "faith",
+        "icon": "✝️",
+        "color": "#9B59B6",
+        "reference": "哥林多后书 5:7",
+        "text": "因我们行事为人、是凭着信心、不是凭着眼见。",
+        "question": "这节关于\"信心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 29,
+        "category": "信心",
+        "categoryEn": "faith",
+        "icon": "✝️",
+        "color": "#9B59B6",
+        "reference": "以弗所书 2:8",
+        "text": "你们得救是本乎恩、也因着信、这并不是出于自己、乃是　神所赐的．",
+        "question": "这节关于\"信心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 30,
+        "category": "信心",
+        "categoryEn": "faith",
+        "icon": "✝️",
+        "color": "#9B59B6",
+        "reference": "雅各书 2:17",
+        "text": "这样、信心若没有行为就是死的。",
+        "question": "这节关于\"信心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 31,
+        "category": "信心",
+        "categoryEn": "faith",
+        "icon": "✝️",
+        "color": "#9B59B6",
+        "reference": "约翰一书 5:4",
+        "text": "因为凡从　神生的、就胜过世界．使我们胜了世界的、就是我们的信心。",
+        "question": "这节关于\"信心\"的经文如何触动你的心？"
+    },
+    {
+        "id": 32,
+        "category": "力量",
+        "categoryEn": "strength",
+        "icon": "💪",
+        "color": "#F39C12",
+        "reference": "腓立比书 4:13",
+        "text": "我靠着那加给我力量的、凡事都能作。",
+        "question": "这节关于\"力量\"的经文如何触动你的心？"
+    },
+    {
+        "id": 33,
+        "category": "力量",
+        "categoryEn": "strength",
+        "icon": "💪",
+        "color": "#F39C12",
+        "reference": "以赛亚书 40:31",
+        "text": "但那等候耶和华的、必从新得力、他们必如鹰展翅上腾、他们奔跑却不困倦、行走却不疲乏。",
+        "question": "这节关于\"力量\"的经文如何触动你的心？"
+    },
+    {
+        "id": 34,
+        "category": "力量",
+        "categoryEn": "strength",
+        "icon": "💪",
+        "color": "#F39C12",
+        "reference": "以赛亚书 41:10",
+        "text": "你不要害怕、因为我与你同在．不要惊惶、因为我是你的　神．我必坚固你、我必帮助你、我必用我公义的右手扶持你。",
+        "question": "这节关于\"力量\"的经文如何触动你的心？"
+    },
+    {
+        "id": 35,
+        "category": "力量",
+        "categoryEn": "strength",
+        "icon": "💪",
+        "color": "#F39C12",
+        "reference": "诗篇 27:1",
+        "text": "〔大卫的诗。〕耶和华是我的亮光、是我的拯救．我还怕谁呢．耶和华是我性命的保障．〔保障或作力量〕我还惧谁呢。",
+        "question": "这节关于\"力量\"的经文如何触动你的心？"
+    },
+    {
+        "id": 36,
+        "category": "力量",
+        "categoryEn": "strength",
+        "icon": "💪",
+        "color": "#F39C12",
+        "reference": "诗篇 28:7",
+        "text": "耶和华是我的力量、是我的盾牌．我心里倚靠他、就得帮助．所以我心中欢乐．我必用诗歌颂赞他。",
+        "question": "这节关于\"力量\"的经文如何触动你的心？"
+    },
+    {
+        "id": 37,
+        "category": "力量",
+        "categoryEn": "strength",
+        "icon": "💪",
+        "color": "#F39C12",
+        "reference": "诗篇 31:24",
+        "text": "凡仰望耶和华的人、你们都要壮胆、坚固你们的心。",
+        "question": "这节关于\"力量\"的经文如何触动你的心？"
+    },
+    {
+        "id": 38,
+        "category": "力量",
+        "categoryEn": "strength",
+        "icon": "💪",
+        "color": "#F39C12",
+        "reference": "尼希米记 8:10",
+        "text": "又对他们说、你们去吃肥美的、喝甘甜的、有不能预备的、就分给他．因为今日是我们主的圣日．你们不要忧愁、因靠耶和华而得的喜乐是你们的力量。",
+        "question": "这节关于\"力量\"的经文如何触动你的心？"
+    },
+    {
+        "id": 39,
+        "category": "力量",
+        "categoryEn": "strength",
+        "icon": "💪",
+        "color": "#F39C12",
+        "reference": "撒迦利亚书 4:6",
+        "text": "他对我说、这是耶和华指示所罗巴伯的．万军之耶和华说、不是倚靠势力、不是倚靠才能、乃是倚靠我的灵、方能成事。",
+        "question": "这节关于\"力量\"的经文如何触动你的心？"
+    },
+    {
+        "id": 40,
+        "category": "力量",
+        "categoryEn": "strength",
+        "icon": "💪",
+        "color": "#F39C12",
+        "reference": "提摩太后书 1:7",
+        "text": "因为　神赐给我们、不是胆怯的心、乃是刚强、仁爱、谨守的心。",
+        "question": "这节关于\"力量\"的经文如何触动你的心？"
+    },
+    {
+        "id": 41,
+        "category": "力量",
+        "categoryEn": "strength",
+        "icon": "💪",
+        "color": "#F39C12",
+        "reference": "以弗所书 6:10",
+        "text": "我还有末了的话、你们要靠着主、倚赖他的大能大力、作刚强的人。",
+        "question": "这节关于\"力量\"的经文如何触动你的心？"
+    },
+    {
+        "id": 42,
+        "category": "智慧",
+        "categoryEn": "wisdom",
+        "icon": "📖",
+        "color": "#1ABC9C",
+        "reference": "箴言 3:5-6",
+        "text": "你要专心仰赖耶和华、不可倚靠自己的聪明． 在你一切所行的事上、都要认定他、他必指引你的路。",
+        "question": "这节关于\"智慧\"的经文如何触动你的心？"
+    },
+    {
+        "id": 43,
+        "category": "智慧",
+        "categoryEn": "wisdom",
+        "icon": "📖",
+        "color": "#1ABC9C",
+        "reference": "箴言 9:10",
+        "text": "敬畏耶和华、是智慧的开端．认识至圣者、便是聪明。",
+        "question": "这节关于\"智慧\"的经文如何触动你的心？"
+    },
+    {
+        "id": 44,
+        "category": "智慧",
+        "categoryEn": "wisdom",
+        "icon": "📖",
+        "color": "#1ABC9C",
+        "reference": "箴言 4:7",
+        "text": "智慧为首．所以要得智慧．在你一切所得之内、必得聪明。〔或作用你一切所得的去换聪明〕。",
+        "question": "这节关于\"智慧\"的经文如何触动你的心？"
+    },
+    {
+        "id": 45,
+        "category": "智慧",
+        "categoryEn": "wisdom",
+        "icon": "📖",
+        "color": "#1ABC9C",
+        "reference": "箴言 2:6",
+        "text": "因为、耶和华赐人智慧．知识和聪明都由他口而出．",
+        "question": "这节关于\"智慧\"的经文如何触动你的心？"
+    },
+    {
+        "id": 46,
+        "category": "智慧",
+        "categoryEn": "wisdom",
+        "icon": "📖",
+        "color": "#1ABC9C",
+        "reference": "箴言 19:20",
+        "text": "你要听劝教、受训诲、使你终久有智慧。",
+        "question": "这节关于\"智慧\"的经文如何触动你的心？"
+    },
+    {
+        "id": 47,
+        "category": "智慧",
+        "categoryEn": "wisdom",
+        "icon": "📖",
+        "color": "#1ABC9C",
+        "reference": "雅各书 1:5",
+        "text": "你们中间若有缺少智慧的、应当求那厚赐与众人、也不斥责人的　神、主就必赐给他。",
+        "question": "这节关于\"智慧\"的经文如何触动你的心？"
+    },
+    {
+        "id": 48,
+        "category": "智慧",
+        "categoryEn": "wisdom",
+        "icon": "📖",
+        "color": "#1ABC9C",
+        "reference": "雅各书 3:17",
+        "text": "惟独从上头来的智慧、先是清洁、后是和平、温良柔顺、满有怜悯、多结善果、没有偏见、没有假冒。",
+        "question": "这节关于\"智慧\"的经文如何触动你的心？"
+    },
+    {
+        "id": 49,
+        "category": "智慧",
+        "categoryEn": "wisdom",
+        "icon": "📖",
+        "color": "#1ABC9C",
+        "reference": "传道书 7:12",
+        "text": "因为智慧护庇人、好像银钱护庇人一样．惟独智慧能保全智慧人的生命、这就是知识的益处。",
+        "question": "这节关于\"智慧\"的经文如何触动你的心？"
+    },
+    {
+        "id": 50,
+        "category": "智慧",
+        "categoryEn": "wisdom",
+        "icon": "📖",
+        "color": "#1ABC9C",
+        "reference": "但以理书 2:20-21",
+        "text": "但以理说、　神的名是应当称颂的、从亘古直到永远、因为智慧能力都属乎他． 他改变时候、日期、废王、立王、将智慧赐与智慧人、将知识赐与聪明人．",
+        "question": "这节关于\"智慧\"的经文如何触动你的心？"
+    },
+    {
+        "id": 51,
+        "category": "智慧",
+        "categoryEn": "wisdom",
+        "icon": "📖",
+        "color": "#1ABC9C",
+        "reference": "歌罗西书 2:2-3",
+        "text": "要叫他们的心得安慰、因爱心互相联络、以致丰丰足足在悟性中有充足的信心、使他们真知　神的奥秘、就是基督． 所积蓄的一切智慧知识、都在他里面藏着。",
+        "question": "这节关于\"智慧\"的经文如何触动你的心？"
+    },
+    {
+        "id": 52,
+        "category": "宽恕",
+        "categoryEn": "forgiveness",
+        "icon": "🤝",
+        "color": "#3498DB",
+        "reference": "以弗所书 4:32",
+        "text": "并要以恩慈相待、存怜悯的心、彼此饶恕、正如　神在基督里饶恕了你们一样。",
+        "question": "这节关于\"宽恕\"的经文如何触动你的心？"
+    },
+    {
+        "id": 53,
+        "category": "宽恕",
+        "categoryEn": "forgiveness",
+        "icon": "🤝",
+        "color": "#3498DB",
+        "reference": "诗篇 103:12",
+        "text": "东离西有多远、他叫我们的过犯、离我们也有多远。",
+        "question": "这节关于\"宽恕\"的经文如何触动你的心？"
+    },
+    {
+        "id": 54,
+        "category": "宽恕",
+        "categoryEn": "forgiveness",
+        "icon": "🤝",
+        "color": "#3498DB",
+        "reference": "诗篇 32:1-2",
+        "text": "〔大卫的训诲诗。〕得赦免其过、遮盖其罪的、这人是有福的。 凡心里没有诡诈、耶和华不算为有罪的、这人是有福的。",
+        "question": "这节关于\"宽恕\"的经文如何触动你的心？"
+    },
+    {
+        "id": 55,
+        "category": "宽恕",
+        "categoryEn": "forgiveness",
+        "icon": "🤝",
+        "color": "#3498DB",
+        "reference": "马太福音 6:14-15",
+        "text": "你们饶恕人的过犯、你们的天父也必饶恕你们的过犯。 你们不饶恕人的过犯、你们的天父也必不饶恕你们的过犯。",
+        "question": "这节关于\"宽恕\"的经文如何触动你的心？"
+    },
+    {
+        "id": 56,
+        "category": "宽恕",
+        "categoryEn": "forgiveness",
+        "icon": "🤝",
+        "color": "#3498DB",
+        "reference": "马可福音 11:25",
+        "text": "你们站着祷告的时候、若想起有人得罪你们、就当饶恕他、好叫你们在天上的父、也饶恕你们的过犯。",
+        "question": "这节关于\"宽恕\"的经文如何触动你的心？"
+    },
+    {
+        "id": 57,
+        "category": "宽恕",
+        "categoryEn": "forgiveness",
+        "icon": "🤝",
+        "color": "#3498DB",
+        "reference": "路加福音 6:37",
+        "text": "你们不要论断人、就不被论断．你们不要定人的罪、就不被定罪．你们要饶恕人、就必蒙饶恕．〔饶恕原文作释放〕",
+        "question": "这节关于\"宽恕\"的经文如何触动你的心？"
+    },
+    {
+        "id": 58,
+        "category": "宽恕",
+        "categoryEn": "forgiveness",
+        "icon": "🤝",
+        "color": "#3498DB",
+        "reference": "歌罗西书 3:13",
+        "text": "倘若这人与那人有嫌隙、总要彼此包容、彼此饶恕．主怎样饶恕了你们、你们也要怎样饶恕人。",
+        "question": "这节关于\"宽恕\"的经文如何触动你的心？"
+    },
+    {
+        "id": 59,
+        "category": "宽恕",
+        "categoryEn": "forgiveness",
+        "icon": "🤝",
+        "color": "#3498DB",
+        "reference": "约翰一书 1:9",
+        "text": "我们若认自己的罪、　神是信实的、是公义的、必要赦免我们的罪、洗净我们一切的不义。",
+        "question": "这节关于\"宽恕\"的经文如何触动你的心？"
+    },
+    {
+        "id": 60,
+        "category": "宽恕",
+        "categoryEn": "forgiveness",
+        "icon": "🤝",
+        "color": "#3498DB",
+        "reference": "以赛亚书 1:18",
+        "text": "耶和华说、你们来、我们彼此辩论．你们的罪虽像朱红、必变成雪白．虽红如丹颜、必白如羊毛。",
+        "question": "这节关于\"宽恕\"的经文如何触动你的心？"
+    },
+    {
+        "id": 61,
+        "category": "宽恕",
+        "categoryEn": "forgiveness",
+        "icon": "🤝",
+        "color": "#3498DB",
+        "reference": "弥迦书 7:18-19",
+        "text": "神阿、有何神像你、赦免罪孽、饶恕你产业之余民的罪过．不永远怀怒、喜爱施恩。 必再怜悯我们、将我们的罪孽踏在脚下、又将我们的一切罪投于深海。",
+        "question": "这节关于\"宽恕\"的经文如何触动你的心？"
+    },
+    {
+        "id": 62,
+        "category": "盼望",
+        "categoryEn": "hope",
+        "icon": "🌟",
+        "color": "#E67E22",
+        "reference": "耶利米书 29:11",
+        "text": "耶和华说、我知道我向你们所怀的意念、是赐平安的意念、不是降灾祸的意念、要叫你们末后有指望。",
+        "question": "这节关于\"盼望\"的经文如何触动你的心？"
+    },
+    {
+        "id": 63,
+        "category": "盼望",
+        "categoryEn": "hope",
+        "icon": "🌟",
+        "color": "#E67E22",
+        "reference": "罗马书 15:13",
+        "text": "但愿使人有盼望的　神、因信、将诸般的喜乐平安、充满你们的心、使你们借着圣灵的能力、大有盼望。",
+        "question": "这节关于\"盼望\"的经文如何触动你的心？"
+    },
+    {
+        "id": 64,
+        "category": "盼望",
+        "categoryEn": "hope",
+        "icon": "🌟",
+        "color": "#E67E22",
+        "reference": "罗马书 8:24-25",
+        "text": "我们得救是在乎盼望．只是所见的盼望不是盼望．谁还盼望他所见的呢。〔有古卷作人所看见的何必再盼望呢〕 但我们若盼望那所不见的、就必忍耐等候。",
+        "question": "这节关于\"盼望\"的经文如何触动你的心？"
+    },
+    {
+        "id": 65,
+        "category": "盼望",
+        "categoryEn": "hope",
+        "icon": "🌟",
+        "color": "#E67E22",
+        "reference": "罗马书 5:2-5",
+        "text": "我们又借着他、因信得进入现在所站的这恩典中、并且欢欢喜喜盼望　神的荣耀。 不但如此、就是在患难中、也是欢欢喜喜的．因为知道患难生忍耐． 忍耐生老练．老练生盼望． 盼望不至于羞耻．因为所赐给我们的圣灵、将　神的爱浇灌在我们心里。",
+        "question": "这节关于\"盼望\"的经文如何触动你的心？"
+    },
+    {
+        "id": 66,
+        "category": "盼望",
+        "categoryEn": "hope",
+        "icon": "🌟",
+        "color": "#E67E22",
+        "reference": "诗篇 39:7",
+        "text": "主阿、如今我等甚么呢．我的指望在乎你。",
+        "question": "这节关于\"盼望\"的经文如何触动你的心？"
+    },
+    {
+        "id": 67,
+        "category": "盼望",
+        "categoryEn": "hope",
+        "icon": "🌟",
+        "color": "#E67E22",
+        "reference": "诗篇 71:5",
+        "text": "主耶和华阿、你是我所盼望的．从我年幼你是我所倚靠的。",
+        "question": "这节关于\"盼望\"的经文如何触动你的心？"
+    },
+    {
+        "id": 68,
+        "category": "盼望",
+        "categoryEn": "hope",
+        "icon": "🌟",
+        "color": "#E67E22",
+        "reference": "诗篇 130:5",
+        "text": "我等候耶和华、我的心等候．我也仰望他的话。",
+        "question": "这节关于\"盼望\"的经文如何触动你的心？"
+    },
+    {
+        "id": 69,
+        "category": "盼望",
+        "categoryEn": "hope",
+        "icon": "🌟",
+        "color": "#E67E22",
+        "reference": "以赛亚书 40:31",
+        "text": "但那等候耶和华的、必从新得力、他们必如鹰展翅上腾、他们奔跑却不困倦、行走却不疲乏。",
+        "question": "这节关于\"盼望\"的经文如何触动你的心？"
+    },
+    {
+        "id": 70,
+        "category": "盼望",
+        "categoryEn": "hope",
+        "icon": "🌟",
+        "color": "#E67E22",
+        "reference": "哥林多前书 13:13",
+        "text": "如今常存的有信、有望、有爱、这三样、其中最大的是爱。",
+        "question": "这节关于\"盼望\"的经文如何触动你的心？"
+    },
+    {
+        "id": 71,
+        "category": "盼望",
+        "categoryEn": "hope",
+        "icon": "🌟",
+        "color": "#E67E22",
+        "reference": "希伯来书 6:19",
+        "text": "我们有这指望如同灵魂的锚、又坚固又牢靠、且通入幔内。",
+        "question": "这节关于\"盼望\"的经文如何触动你的心？"
+    },
+    {
+        "id": 72,
+        "category": "盼望",
+        "categoryEn": "hope",
+        "icon": "🌟",
+        "color": "#E67E22",
+        "reference": "彼得前书 1:3-4",
+        "text": "愿颂赞归与我们主耶稣基督的父　神、他曾照自己的大怜悯、借耶稣基督从死里复活、重生了我们、叫我们有活泼的盼望、 可以得着不能朽坏、不能玷污、不能衰残、为你们存留在天上的基业。",
+        "question": "这节关于\"盼望\"的经文如何触动你的心？"
+    }
+];
+
+export function getCardsByCategory(categoryId) {
+    return cards.filter(card => card.categoryEn === categoryId);
+}
+
+export function getRandomCard(categoryId = null) {
+    if (categoryId) {
+        const categoryCards = getCardsByCategory(categoryId);
+        return categoryCards[Math.floor(Math.random() * categoryCards.length)];
+    }
+    return cards[Math.floor(Math.random() * cards.length)];
+}
+
+export function getCardById(id) {
+    return cards.find(card => card.id === id);
+}

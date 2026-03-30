@@ -235,7 +235,17 @@ function renderCard({ currentCard, categoryNames, levelNames, elements }) {
     cardCategory.textContent = categoryNames[currentCard.category] || currentCard.category;
     cardLevel.textContent = levelNames[String(currentCard.level)] || `第${currentCard.level}级`;
     cardLevel.className = `card-level level-${currentCard.level}`;
-    cardQuestion.textContent = currentCard.question;
+    
+    // For Bible verse cards, display verse text and reference
+    if (currentCard.text && currentCard.reference) {
+        cardQuestion.innerHTML = `
+            <div class="verse-text">${currentCard.text}</div>
+            <div class="verse-reference">${currentCard.reference}</div>
+        `;
+    } else {
+        cardQuestion.textContent = currentCard.question;
+    }
+    
     saveBtn.style.display = 'inline-block';
     shareBtn.style.display = 'inline-block';
 }

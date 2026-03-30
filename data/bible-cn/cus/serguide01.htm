@@ -1,0 +1,116 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<title>圣经搜寻指示</title>
+<meta name="description" content=
+"这网页采用多个例子，提示圣经搜寻的方法。">
+<meta name="keywords" content="圣经, 搜寻方法, 圣经章节, 并/或 运算符, 正则表达式">
+<style type="text/css">body {font-size:150%}</style>
+<script type="text/javascript">
+cssfile = "";
+function loadcss(filename) {
+ cssfile = filename;
+ var fileref=document.createElement("link")
+ fileref.setAttribute("rel", "stylesheet");
+ fileref.setAttribute("type", "text/css");
+ fileref.setAttribute("href", filename);
+ if (typeof fileref!="undefined")
+  {document.getElementsByTagName("head")[0].appendChild(fileref);}
+}
+function selected(dropdown) {
+ var myindex  = dropdown.selectedIndex;
+ var svalue = dropdown.options[myindex].value;
+ top.location.href = svalue;
+ return true;
+}
+</script>
+</head>
+<body background="bg20.jpg">
+ &nbsp; &nbsp; &nbsp; &nbsp; 
+ <a href="javascript:loadcss('font1.css')"><font size="1">A</font></a> 
+ &nbsp; &nbsp; &nbsp; &nbsp; 
+ <a href="javascript:loadcss('font2.css')"><font size="2">A</font></a> 
+ &nbsp; &nbsp; &nbsp; &nbsp; 
+ <a href="javascript:loadcss('font3.css')"><font size="3">A</font></a> 
+ &nbsp; &nbsp; &nbsp; &nbsp; 
+ <a href="javascript:loadcss('font4.css')"><font size="4">A</font></a> 
+<h2 align="center">圣经搜寻指示</h2>
+<p align="center">(正在扩展至多国语言)</p>
+<center>
+<form name="lang" action="">
+ <select name="language" onchange="selected(this.form.language);">
+  <option selected value="serguide01.htm">Chinese Simplified 中文简体</option>
+  <option value="serguide02.htm">Chinese Traditional 中文繁体</option>
+  <option value="serguide03.htm">English</option>
+  <option value="serguide04.htm">Greek ελληνικά</option>
+  <option value="serguide05.htm">Hebrew עברית</option>
+  <option value="serguide06.htm">Latin Latine</option>
+  <option value="serguide08.htm">French Français</option>
+  <option value="serguide09.htm">German Deutsch</option>
+  <option value="serguide07.htm">Japanese 日本語</option>
+  <option value="serguide10.htm">Korean 한국인</option>
+ </select>
+</form>
+</center>
+<br><br>
+这网页采用多个例子，提示圣经搜寻的方法。<br>
+<h4 align="center">
+<a href="index.htm">返回主页</a></h4>
+<hr>
+<h3>多组关键词</h3>
+搜寻方法用六组词语, 以"并/或 运算符" (AND/OR operator)连接。运算符依据通用法则，先做并连，再做或连。<br>
+<br>
+因此，六组词语分成两类：第一类是第一行的三组词语，用或连。第二类是第二行的三组词语，用并连。两行再用"或"连接。<br>
+<br>
+如果输入英文等字母文字，大写小写视作相同。<br>
+<br>
+以下例子说明各种搜寻方法。<br>
+<br>
+<hr>
+<h3>举例 1: 或连 - 任一词，不计顺序。(OR Operation - Any words, any order)</h3>
+搜寻有关 “天堂”，“地狱”，“乐园” 的章节。这三个词语不必在同一章节出现。我们要含有任一词的所有章节，且不计词语顺序。 <br>
+<br>
+这类搜寻用或连。要输入“天堂”到第一组，“地狱”到第二组，“乐园”到第三组。全在第一行。<br>
+<br>
+<hr>
+<h3>举例 2: 并连 - 全部词，不计顺序。(AND Operation - All words, any order)</h3>
+搜寻有关 “神” 和 “国” 的章节。这两个词语要在同一章节出现。排除只出现 “神”，或只出现 “国”的章节。 <br>
+<br>
+这类搜寻用并连。要输入“神”到第四组，“国”到第五组。全在第二行。<br>
+<br>
+<hr>
+<h3>举例 3: "并/或"齐用 (AND/OR Comination)</h3>
+搜寻有关全部上述的观念。<br>
+<br>
+这类搜寻"并/或"齐用。输入“天堂”，“地狱”，“乐园”到第一行。输入“神”，“国”到第二行。<br>
+<br>
+<hr>
+<h3>举例 4: 单一确切词，无添加。(Exact words, no extension)</h3>
+中文全部是单一确切词。 但如果输入英文等字母文字，例如"last"字，又不想搜出"everlasting", 可以在字的前后加上空白，输入" last "。中文就无此问题。<br>
+<br>
+<hr>
+<h3>举例 5: 确切词，确切顺序。(Exact words, exact order)</h3>
+要搜寻完整字句，例如"在前的将要在后"，要将整句输入任一组内，不能分散几组。<br>
+<br>
+<hr>
+<h3>举例 6: 简单正则表达式 - 搜出任何字。(Regular Expression - Match any characters)</h3>
+要搜寻 "前" "后" 两字，中间夹杂任何词句。模式是 "前.*后" (中间无空白)。 这是因为符号"."代表任何字。符号"*"代表之前符号的任何字数。例如，章节内有"在前的将要在后"一句，含"前"字，跟着是任何字任何字数，再跟着是"后"字，就会搜寻出来。<br>
+<br>
+这方法效果和在第四组放"前"字，第五组放"后"字不同。那会将"在后的将要在前"也一同搜出来。因为 ".*" 计顺序, 而并连 (AND Operation) 是不计顺序的。<br>
+<br>
+<hr>
+<h3>更高级搜寻:</h3>
+六组关键词的每一组，都接纳
+<a href="http://zh.wikipedia.org/zh-cn/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F" 
+target="_blank">正则表达式 Regular Expression</a> 的模式。 <br>
+<br>
+用适当模式搜寻，传道人和圣经学者，就能在几秒钟内，将切当资料找寻出来。<br>
+<br>
+<br><br><hr><br><br>
+<ins datetime="2013:07:15">Bible in Multiple Languages</ins><br>
+<a href="http://bibletool.net">
+<b>http://bibletool.net</b></a><br>
+<br><br><br><br>
+</body>
+</html>

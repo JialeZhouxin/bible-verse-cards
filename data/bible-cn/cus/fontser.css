@@ -1,0 +1,12 @@
+﻿body {font-size:150%}
+#txt {font-size:100%}
+#word1 {font-size:100%;width:20%}
+#word2 {font-size:100%;width:20%}
+#word3 {font-size:100%;width:20%}
+#word4 {font-size:100%;width:20%}
+#word5 {font-size:100%;width:20%}
+#word6 {font-size:100%;width:20%}
+#count {font-size:100%;width:15%}
+.mybutton {font-size:14px;font-weight:bold;padding:0px 0px 0px 2px;BORDER:1px solid;   height:24px;color:#2864b4;BACKGROUND-COLOR:#eaf5ff}
+.textfield {
+font-size:14px;BACKGROUND:#edf5ff;WIDTH:97%;border: 1px solid #A92149;}

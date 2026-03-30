@@ -1,0 +1,85 @@
+{
+    "identifier": "80-old-testament-chinese_202308",
+    "format-version": "2",
+    "archive-hocr-tools-version": "1.1.50",
+    "confidence": 76,
+    "pages": [
+        {
+            "leafNum": 0,
+            "confidence": 82,
+            "pageNumber": "421",
+            "pageProb": 72,
+            "wordConf": 91
+        },
+        {
+            "leafNum": 1,
+            "confidence": null,
+            "pageNumber": "422",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 2,
+            "confidence": 79,
+            "pageNumber": "423",
+            "pageProb": 69,
+            "wordConf": 89
+        },
+        {
+            "leafNum": 3,
+            "confidence": null,
+            "pageNumber": "424",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 4,
+            "confidence": 70,
+            "pageNumber": "425",
+            "pageProb": 60,
+            "wordConf": 96
+        },
+        {
+            "leafNum": 5,
+            "confidence": null,
+            "pageNumber": "426",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 6,
+            "confidence": 77,
+            "pageNumber": "427",
+            "pageProb": 67,
+            "wordConf": 90
+        },
+        {
+            "leafNum": 7,
+            "confidence": null,
+            "pageNumber": "428",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 8,
+            "confidence": 72,
+            "pageNumber": "429",
+            "pageProb": 62,
+            "wordConf": 89
+        },
+        {
+            "leafNum": 9,
+            "confidence": null,
+            "pageNumber": "",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 10,
+            "confidence": null,
+            "pageNumber": "",
+            "pageProb": null,
+            "wordConf": null
+        }
+    ]
+}

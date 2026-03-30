@@ -268,6 +268,27 @@ header p {
     color: #422c1a;
 }
 
+/* Bible verse display styles */
+.verse-text {
+    font-family: 'Noto Serif SC', 'Songti SC', serif;
+    font-size: clamp(1.32rem, 2.8vw, 1.72rem);
+    line-height: 1.85;
+    color: #422c1a;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.verse-reference {
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: #8b6914;
+    text-align: right;
+    font-style: italic;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+}
+
 .controls {
     display: flex;
     justify-content: center;

@@ -1,0 +1,113 @@
+{
+    "identifier": "80-old-testament-chinese_202308",
+    "format-version": "2",
+    "archive-hocr-tools-version": "1.1.50",
+    "confidence": 71,
+    "pages": [
+        {
+            "leafNum": 0,
+            "confidence": 71,
+            "pageNumber": "800",
+            "pageProb": 61,
+            "wordConf": 87
+        },
+        {
+            "leafNum": 1,
+            "confidence": 71,
+            "pageNumber": "801",
+            "pageProb": 61,
+            "wordConf": 88
+        },
+        {
+            "leafNum": 2,
+            "confidence": null,
+            "pageNumber": "802",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 3,
+            "confidence": 71,
+            "pageNumber": "803",
+            "pageProb": 61,
+            "wordConf": 87
+        },
+        {
+            "leafNum": 4,
+            "confidence": null,
+            "pageNumber": "804",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 5,
+            "confidence": 68,
+            "pageNumber": "805",
+            "pageProb": 58,
+            "wordConf": 96
+        },
+        {
+            "leafNum": 6,
+            "confidence": null,
+            "pageNumber": "806",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 7,
+            "confidence": 71,
+            "pageNumber": "807",
+            "pageProb": 61,
+            "wordConf": 89
+        },
+        {
+            "leafNum": 8,
+            "confidence": null,
+            "pageNumber": "808",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 9,
+            "confidence": 68,
+            "pageNumber": "809",
+            "pageProb": 58,
+            "wordConf": 88
+        },
+        {
+            "leafNum": 10,
+            "confidence": null,
+            "pageNumber": "810",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 11,
+            "confidence": 74,
+            "pageNumber": "811",
+            "pageProb": 64,
+            "wordConf": 92
+        },
+        {
+            "leafNum": 12,
+            "confidence": null,
+            "pageNumber": "812",
+            "pageProb": null,
+            "wordConf": null
+        },
+        {
+            "leafNum": 13,
+            "confidence": 71,
+            "pageNumber": "813",
+            "pageProb": 61,
+            "wordConf": 96
+        },
+        {
+            "leafNum": 14,
+            "confidence": null,
+            "pageNumber": "",
+            "pageProb": null,
+            "wordConf": null
+        }
+    ]
+}
