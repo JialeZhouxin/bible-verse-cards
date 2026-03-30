@@ -2625,3 +2625,213 @@ header p {
     }
 }
 
+/* =====================
+   每日经文 (Daily Verse from API)
+   ===================== */
+.daily-verse-section {
+    background: linear-gradient(135deg, var(--paper) 0%, var(--paper-strong) 100%);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--line);
+}
+
+.daily-verse-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+}
+
+.daily-verse-icon {
+    font-size: 1.5rem;
+}
+
+.daily-verse-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex: 1;
+}
+
+.daily-verse-badge {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: var(--bg-secondary);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.daily-verse-content {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.daily-verse-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--text-muted);
+    padding: 30px 0;
+}
+
+.loading-spinner {
+    animation: spin 1s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.daily-verse-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    text-align: center;
+    padding: 15px 10px;
+    font-family: 'Noto Serif SC', serif;
+}
+
+.daily-verse-reference {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.verse-book {
+    font-weight: 600;
+}
+
+.verse-chapter-verse {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.verse-translation {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-left: 5px;
+}
+
+.daily-verse-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.daily-verse-error {
+    text-align: center;
+    padding: 30px 0;
+    color: var(--text-muted);
+}
+
+.daily-verse-error span {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* API 经文卡片样式 */
+.api-verse-badge {
+    background: linear-gradient(135deg, var(--accent-soft) 0%, var(--accent) 100%);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.card-verse-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    text-align: center;
+    padding: 20px 15px;
+    font-family: 'Noto Serif SC', serif;
+}
+
+.card-verse-reference {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--line);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.api-loading {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+}
+
+.loading-spinner-large {
+    font-size: 3rem;
+    animation: spin 1s linear infinite;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.api-error {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+}
+
+.error-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* 响应式调整 */
+@media (max-width: 640px) {
+    .daily-verse-section {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .daily-verse-title {
+        font-size: 1rem;
+    }
+
+    .daily-verse-badge {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+
+    .daily-verse-text {
+        font-size: 1.05rem;
+        padding: 10px 5px;
+    }
+
+    .daily-verse-reference {
+        font-size: 0.85rem;
+        flex-wrap: wrap;
+    }
+
+    .card-verse-text {
+        font-size: 1.1rem;
+        padding: 15px 10px;
+    }
+}
+

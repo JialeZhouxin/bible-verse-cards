@@ -70,6 +70,11 @@
         <!-- 卡牌包指示器 -->
         <div id="activePackIndicator"></div>
 
+        <!-- 每日经文（来自 API） -->
+        <div class="daily-verse-section" id="dailyVerseSection">
+            <div id="dailyVerseContainer"></div>
+        </div>
+
         <!-- 每日推荐 -->
         <div class="daily-card-section" id="dailyCardSection">
             <div id="dailyCardContainer"></div>
@@ -77,6 +82,7 @@
 
         <!-- 功能入口 -->
         <div class="feature-buttons">
+            <button class="filter-btn feature-btn" id="apiVerseBtn">📖 每日灵粮</button>
             <button class="filter-btn feature-btn" id="customCardBtn">✏️ 自定义卡牌</button>
             <button class="filter-btn feature-btn" id="cardPackBtn">📦 卡牌包</button>
         </div>
