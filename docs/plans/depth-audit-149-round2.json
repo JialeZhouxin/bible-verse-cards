@@ -1,0 +1,1343 @@
+[
+  {
+    "id": 1,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "今天你做的哪一个举动最让对方开心？"
+  },
+  {
+    "id": 2,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最欣赏对方的哪个小习惯？"
+  },
+  {
+    "id": 3,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你和对方一起做过最有趣的一件事是什么？"
+  },
+  {
+    "id": 4,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你是什么时候第一次对对方心动的？"
+  },
+  {
+    "id": 5,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "用三个词形容你们现在的关系状态。"
+  },
+  {
+    "id": 6,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最喜欢和对方一起做的哪件事？"
+  },
+  {
+    "id": 7,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "今天你最想和对方分享的一件小事是什么？"
+  },
+  {
+    "id": 8,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近有什么让你开心的事？"
+  },
+  {
+    "id": 9,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你理想中的周末通常怎么度过？"
+  },
+  {
+    "id": 10,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果下一次旅行可任选目的地，你最想去哪里？"
+  },
+  {
+    "id": 11,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最近看过最好的电影是什么？"
+  },
+  {
+    "id": 12,
+    "cat": "couple",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在对方做的菜里，你最喜欢哪一道？"
+  },
+  {
+    "id": 13,
+    "cat": "friend",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你和对方第一次见面时，你的第一印象是什么？"
+  },
+  {
+    "id": 14,
+    "cat": "friend",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最喜欢和对方一起做的活动是什么？"
+  },
+  {
+    "id": 15,
+    "cat": "friend",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "用三个词形容你们的友谊。"
+  },
+  {
+    "id": 16,
+    "cat": "friend",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近有什么让你开心的小事？"
+  },
+  {
+    "id": 17,
+    "cat": "friend",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近你最想分享的一件新鲜事是什么？"
+  },
+  {
+    "id": 18,
+    "cat": "friend",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "这周你的状态怎么样？"
+  },
+  {
+    "id": 19,
+    "cat": "friend",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近你新开始或重新拾起的一个爱好是什么？"
+  },
+  {
+    "id": 20,
+    "cat": "friend",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近你最喜欢的一本书是什么？为什么推荐？"
+  },
+  {
+    "id": 21,
+    "cat": "family",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "家里最让你感到温暖的时刻是什么？"
+  },
+  {
+    "id": 22,
+    "cat": "family",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最喜欢家里的哪个传统？为什么？"
+  },
+  {
+    "id": 23,
+    "cat": "family",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "用三个词形容你目前感受到的家庭氛围。"
+  },
+  {
+    "id": 24,
+    "cat": "family",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "小时候家里最让你温暖的传统是什么？"
+  },
+  {
+    "id": 25,
+    "cat": "family",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "家人做过哪道菜最让你怀念？"
+  },
+  {
+    "id": 26,
+    "cat": "family",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最想和家人一起完成的一件事是什么？"
+  },
+  {
+    "id": 27,
+    "cat": "family",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "家里有什么有趣的故事？"
+  },
+  {
+    "id": 28,
+    "cat": "family",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近和家人有什么开心的时刻？"
+  },
+  {
+    "id": 29,
+    "cat": "self",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "今天最让你开心的小事是什么？"
+  },
+  {
+    "id": 30,
+    "cat": "self",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "用三个词形容你当下的自己。"
+  },
+  {
+    "id": 31,
+    "cat": "self",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近你有什么新的发现或领悟？"
+  },
+  {
+    "id": 32,
+    "cat": "self",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近一件让你有成就感的事是什么？"
+  },
+  {
+    "id": 33,
+    "cat": "self",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "今天你最感激的一件事是什么？"
+  },
+  {
+    "id": 34,
+    "cat": "self",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果这个月能学会一个小技能，你想学什么？"
+  },
+  {
+    "id": 35,
+    "cat": "self",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近你最期待的一件事是什么？"
+  },
+  {
+    "id": 36,
+    "cat": "self",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近什么事最能让你放松下来？"
+  },
+  {
+    "id": 37,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "这段关系让你成长最多的一点是什么？"
+  },
+  {
+    "id": 38,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你觉得你们之间最有效的沟通方式是什么？"
+  },
+  {
+    "id": 39,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "未来三个月，你最希望这段关系出现什么变化？"
+  },
+  {
+    "id": 40,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近一次让你被对方打动的时刻是什么？"
+  },
+  {
+    "id": 41,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你们有冲突时，你最希望对方怎么做？"
+  },
+  {
+    "id": 42,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你情绪低落时，你最希望对方怎样陪伴你？"
+  },
+  {
+    "id": 43,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在这段关系里，你什么时候最有“被理解”的感觉？"
+  },
+  {
+    "id": 44,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "对你来说，亲密和独处的理想平衡是什么？"
+  },
+  {
+    "id": 45,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近一次你在意但没说出口的事是什么？"
+  },
+  {
+    "id": 46,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "对你最有效的“被爱表达方式”是什么？"
+  },
+  {
+    "id": 47,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你觉得哪一个小习惯最能提升关系质量？"
+  },
+  {
+    "id": 48,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你希望对方减少的一个相处方式是什么？"
+  },
+  {
+    "id": 49,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "为了关系更好，你愿意先做的一个新尝试是什么？"
+  },
+  {
+    "id": 50,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果要设一个边界，你最想先明确哪一条？"
+  },
+  {
+    "id": 51,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "未来一年，你最想和对方完成的一个共同目标是什么？"
+  },
+  {
+    "id": 52,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "出现分歧时，你希望你们按什么方式做决定？"
+  },
+  {
+    "id": 53,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在这段关系里，什么最能给你安全感？"
+  },
+  {
+    "id": 54,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "本周你愿意为这段关系做的一件小行动是什么？"
+  },
+  {
+    "id": 55,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "这段友谊里，你最珍惜的一点是什么？"
+  },
+  {
+    "id": 56,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你压力很大时，你最希望朋友如何支持你？"
+  },
+  {
+    "id": 57,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "未来你最希望和这位朋友多做的一件事是什么？"
+  },
+  {
+    "id": 58,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近一次你需要帮助却没开口的时刻是什么？"
+  },
+  {
+    "id": 59,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在友谊中，你最看重的品质是什么？"
+  },
+  {
+    "id": 60,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果出现误会，你希望你们怎么沟通并修复？"
+  },
+  {
+    "id": 61,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你情绪复杂时，你最希望朋友先做哪一种回应？"
+  },
+  {
+    "id": 62,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你觉得你们现在最需要改善的一种沟通习惯是什么？"
+  },
+  {
+    "id": 63,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近一次你对朋友感到失望的时刻是什么？你当时在意什么？"
+  },
+  {
+    "id": 64,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你和朋友意见不同，你通常会怎样表达自己的立场？"
+  },
+  {
+    "id": 65,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你希望这段友谊里增加的一种相处频率是什么？"
+  },
+  {
+    "id": 66,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果要让友谊更稳定，你认为最关键的一条边界是什么？"
+  },
+  {
+    "id": 67,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在家庭里，你最希望被理解的一点是什么？"
+  },
+  {
+    "id": 68,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近一次家庭分歧中，你最真实的感受是什么？"
+  },
+  {
+    "id": 69,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当家人表达关心时，哪种方式最让你能接受？"
+  },
+  {
+    "id": 70,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最希望家里减少的一种沟通方式是什么？"
+  },
+  {
+    "id": 71,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果可以调整一个家庭规则，你最想改哪一条？"
+  },
+  {
+    "id": 72,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "面对家庭压力时，你最需要家人提供什么支持？"
+  },
+  {
+    "id": 73,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你现在和家人最需要修复的一件小事是什么？"
+  },
+  {
+    "id": 74,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在家庭关系里，你最重视的边界是什么？"
+  },
+  {
+    "id": 75,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "未来半年，你最希望和家人达成的一个共识是什么？"
+  },
+  {
+    "id": 76,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "为了让家庭氛围更好，你愿意先做的一个行动是什么？"
+  },
+  {
+    "id": 77,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近你反复出现的一种情绪模式是什么？"
+  },
+  {
+    "id": 78,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你压力上来时，最常见的自动反应是什么？"
+  },
+  {
+    "id": 79,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最近在回避的一件事是什么？为什么？"
+  },
+  {
+    "id": 80,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "现在最消耗你精力的一个念头是什么？"
+  },
+  {
+    "id": 81,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最近一次清晰表达自己需求是在什么场景？"
+  },
+  {
+    "id": 82,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最想优化的一个日常习惯是什么？"
+  },
+  {
+    "id": 83,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你自我怀疑时，哪句话最容易影响你？"
+  },
+  {
+    "id": 84,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近一个让你卡住的决定是什么？"
+  },
+  {
+    "id": 85,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你目前最想守住的一条个人边界是什么？"
+  },
+  {
+    "id": 86,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "过去一个月，你最满意的一个选择是什么？"
+  },
+  {
+    "id": 87,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最希望在接下来四周改变的一件事是什么？"
+  },
+  {
+    "id": 88,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果只做一件事来改善状态，你会选什么？"
+  },
+  {
+    "id": 89,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你现在最需要放下的一种执念是什么？"
+  },
+  {
+    "id": 90,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "为了成为更稳定的自己，你准备先做哪一步？"
+  },
+  {
+    "id": 91,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在这段关系里，你最害怕失去的东西是什么？"
+  },
+  {
+    "id": 92,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果只能说一句你一直没说出口的话，你会说什么？"
+  },
+  {
+    "id": 93,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最希望对方真正理解、但你还没表达清楚的一点是什么？"
+  },
+  {
+    "id": 94,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你们关系紧张时，你内心最深的担心通常是什么？"
+  },
+  {
+    "id": 95,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你在亲密关系中最难启齿的需求是什么？"
+  },
+  {
+    "id": 96,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最希望这段关系保持不变的一点是什么？"
+  },
+  {
+    "id": 97,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你感到被忽视时，你最希望对方怎样回应你？"
+  },
+  {
+    "id": 98,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果要重来一次最近的冲突，你最想改变自己哪一步？"
+  },
+  {
+    "id": 99,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你认为你们最需要建立的一个长期沟通机制是什么？"
+  },
+  {
+    "id": 100,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "为了让关系走得更远，你现在最愿意承担的一份责任是什么？"
+  },
+  {
+    "id": 101,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当对方没及时回应你时，你第一反应通常是什么？"
+  },
+  {
+    "id": 102,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "今天你最希望从对方那里获得哪一种支持？"
+  },
+  {
+    "id": 103,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当朋友与你意见不同，你最希望被如何对待？"
+  },
+  {
+    "id": 104,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近一次你感到被朋友理解是在什么情境？"
+  },
+  {
+    "id": 105,
+    "cat": "family",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在家庭交流里，什么语气最容易让你放松？"
+  },
+  {
+    "id": 106,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近一次你真切感到被家人看见是什么时候？"
+  },
+  {
+    "id": 107,
+    "cat": "self",
+    "cur": 1,
+    "sug": 2,
+    "action": "UP",
+    "reason": "need/emotion self-care reflection -> medium depth",
+    "q": "你现在最需要先照顾好的一个感受是什么？"
+  },
+  {
+    "id": 108,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "今天你最想对自己说的一句支持性话语是什么？"
+  },
+  {
+    "id": 109,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你提出需求时，最担心被对方误解成什么？"
+  },
+  {
+    "id": 110,
+    "cat": "couple",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在关系里，你更希望先被理解，还是先被建议？为什么？"
+  },
+  {
+    "id": 111,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当朋友情绪激动时，你通常会怎么回应，效果如何？"
+  },
+  {
+    "id": 112,
+    "cat": "friend",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "为了让友谊更稳，你最想改进的一种表达方式是什么？"
+  },
+  {
+    "id": 113,
+    "cat": "family",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在家庭分歧中，你最容易忽略的一个真实需求是什么？"
+  },
+  {
+    "id": 114,
+    "cat": "family",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你希望家人以后遇到冲突时，优先遵守哪条沟通规则？"
+  },
+  {
+    "id": 115,
+    "cat": "self",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你感到委屈时，你通常如何表达才能既清楚又不失控？"
+  },
+  {
+    "id": 116,
+    "cat": "self",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你最想练习的一项沟通能力是什么？你准备怎么开始？"
+  },
+  {
+    "id": 117,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在亲密关系里，你最深层的情感底线是什么？"
+  },
+  {
+    "id": 118,
+    "cat": "couple",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果关系只能优先满足一个核心需要，你会选什么？为什么？"
+  },
+  {
+    "id": 119,
+    "cat": "friend",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在友谊里，你最不能妥协的一条原则是什么？"
+  },
+  {
+    "id": 120,
+    "cat": "friend",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果这段友谊进入低谷，你最希望先修复的是什么？"
+  },
+  {
+    "id": 121,
+    "cat": "family",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在家庭中，你最希望被长期尊重的一条边界是什么？"
+  },
+  {
+    "id": 122,
+    "cat": "family",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "为了减轻家庭中的误解，你最愿意先改变哪一种说法？"
+  },
+  {
+    "id": 123,
+    "cat": "self",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你情绪失衡时，你最有效的自我安顿方式是什么？"
+  },
+  {
+    "id": 124,
+    "cat": "self",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "未来三个月，你最想建立的一个稳定内在习惯是什么？"
+  },
+  {
+    "id": 125,
+    "cat": "clear_thinking",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "遇到复杂问题时，你通常先问自己的第一个问题是什么？"
+  },
+  {
+    "id": 126,
+    "cat": "clear_thinking",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "最近一次你判断失误，是因为什么信息没看见？"
+  },
+  {
+    "id": 127,
+    "cat": "clear_thinking",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当你很确定自己是对的时，你会如何自我校验？"
+  },
+  {
+    "id": 128,
+    "cat": "clear_thinking",
+    "cur": 1,
+    "sug": 2,
+    "action": "UP",
+    "reason": "emotion-vs-fact discrimination -> medium depth",
+    "q": "你最近在哪个决定里把情绪当成了事实？"
+  },
+  {
+    "id": 129,
+    "cat": "clear_thinking",
+    "cur": 1,
+    "sug": 2,
+    "action": "UP",
+    "reason": "fact-vs-interpretation split -> medium depth",
+    "q": "现在这个问题里，哪些是事实，哪些是解释？"
+  },
+  {
+    "id": 130,
+    "cat": "clear_thinking",
+    "cur": 1,
+    "sug": 1,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果把问题缩小到今天，你最该先做哪一步？"
+  },
+  {
+    "id": 131,
+    "cat": "clear_thinking",
+    "cur": 1,
+    "sug": 2,
+    "action": "UP",
+    "reason": "thinking blind spot awareness -> medium depth",
+    "q": "你最常见的一个思维盲点是什么？"
+  },
+  {
+    "id": 132,
+    "cat": "clear_thinking",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当信息不足时，你会用什么标准先做临时决策？"
+  },
+  {
+    "id": 133,
+    "cat": "clear_thinking",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "这个判断背后，你默认了哪些前提？"
+  },
+  {
+    "id": 134,
+    "cat": "clear_thinking",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果与你立场相反的人来分析，会得出什么结论？"
+  },
+  {
+    "id": 135,
+    "cat": "clear_thinking",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你现在更像是在求真，还是在证明自己没错？"
+  },
+  {
+    "id": 136,
+    "cat": "clear_thinking",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "哪一条证据最可能推翻你当前结论？"
+  },
+  {
+    "id": 137,
+    "cat": "clear_thinking",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在这个选择里，短期收益和长期代价分别是什么？"
+  },
+  {
+    "id": 138,
+    "cat": "clear_thinking",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你是否把“紧急”误当成了“重要”？体现在哪里？"
+  },
+  {
+    "id": 139,
+    "cat": "clear_thinking",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "若必须删掉一个目标，删哪一个能让整体更清晰？"
+  },
+  {
+    "id": 140,
+    "cat": "clear_thinking",
+    "cur": 2,
+    "sug": 2,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "这个决定是否可逆？可逆和不可逆部分分别是什么？"
+  },
+  {
+    "id": 141,
+    "cat": "clear_thinking",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "为了避免重复犯错，你要为这件事建立什么检查点？"
+  },
+  {
+    "id": 142,
+    "cat": "clear_thinking",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果一年后回看今天，你最可能后悔忽视了什么？"
+  },
+  {
+    "id": 143,
+    "cat": "clear_thinking",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你现在坚持的观点里，哪一条最需要被重新检验？"
+  },
+  {
+    "id": 144,
+    "cat": "clear_thinking",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "当价值观冲突时，你排序前三的原则是什么？"
+  },
+  {
+    "id": 145,
+    "cat": "clear_thinking",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "在高压情境下，你如何区分“真实风险”和“想象风险”？"
+  },
+  {
+    "id": 146,
+    "cat": "clear_thinking",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "如果只能保留一个长期习惯来提升判断力，你选什么？"
+  },
+  {
+    "id": 147,
+    "cat": "clear_thinking",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "你准备如何设计一个机制，防止自己被惯性带着走？"
+  },
+  {
+    "id": 148,
+    "cat": "clear_thinking",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "面对不确定未来，你愿意坚持的最小行动单位是什么？"
+  },
+  {
+    "id": 149,
+    "cat": "clear_thinking",
+    "cur": 3,
+    "sug": 3,
+    "action": "KEEP",
+    "reason": "depth fits current level",
+    "q": "从今天开始，你决定停止的一种低质量思考模式是什么？"
+  }
+]
