@@ -289,6 +289,29 @@ header p {
     border-top: 1px dashed var(--line);
 }
 
+/* Verse reference label in card header */
+.verse-reference-label {
+    background: linear-gradient(135deg, var(--accent-soft) 0%, var(--accent) 100%);
+    color: var(--paper);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Noto Sans SC', sans-serif;
+    letter-spacing: 0.02em;
+}
+
+/* Verse reference badge in history */
+.verse-reference-badge {
+    background: linear-gradient(135deg, #8b6914 0%, #c27a3a 100%);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
 .controls {
     display: flex;
     justify-content: center;

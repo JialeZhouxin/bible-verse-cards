@@ -27,8 +27,16 @@ export function renderCard({ currentCard, categoryNames, levelNames, elements })
     emptyState.style.display = 'none';
     cardContent.style.display = 'block';
     cardCategory.textContent = categoryNames[currentCard.category] || currentCard.category;
-    cardLevel.textContent = levelNames[String(currentCard.level)] || `第${currentCard.level}级`;
-    cardLevel.className = `card-level level-${currentCard.level}`;
+    
+    // 对于圣经金句卡片，显示经文出处作为级别/副标题
+    if (currentCard.text && currentCard.reference) {
+        cardLevel.textContent = currentCard.reference;
+        cardLevel.className = 'card-level verse-reference-label';
+    } else {
+        // 原始问题卡片格式
+        cardLevel.textContent = levelNames[String(currentCard.level)] || `第${currentCard.level}级`;
+        cardLevel.className = `card-level level-${currentCard.level}`;
+    }
     
     // 对于圣经金句卡片，显示经文内容和出处
     if (currentCard.text && currentCard.reference) {
@@ -89,9 +97,16 @@ export function renderHistory({ history, levelNames, categoryNames, historyList,
         const categoryTag = createElement('span', `category-tag category-${item.card.category}`, categoryName);
         tagsRow.appendChild(categoryTag);
         
-        const badge = createElement('span', `level-badge level-${item.card.level}`);
-        badge.textContent = levelNames[String(item.card.level)] || `第${item.card.level}级`;
-        tagsRow.appendChild(badge);
+        // 对于圣经金句卡片，显示经文出处；对于问题卡片，显示级别
+        if (item.card.text && item.card.reference) {
+            const badge = createElement('span', 'level-badge verse-reference-badge');
+            badge.textContent = item.card.reference;
+            tagsRow.appendChild(badge);
+        } else if (item.card.level) {
+            const badge = createElement('span', `level-badge level-${item.card.level}`);
+            badge.textContent = levelNames[String(item.card.level)] || `第${item.card.level}级`;
+            tagsRow.appendChild(badge);
+        }
         wrapper.appendChild(tagsRow);
 
         // 问题和回答
