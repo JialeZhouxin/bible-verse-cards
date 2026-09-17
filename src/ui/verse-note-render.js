@@ -9,9 +9,10 @@
  */
 
 import {
-    getBooks, getChapters, getVersesInChapter, getVerse,
+    loadFullBible, getChapters, getVersesInChapter, getVerse,
     searchVerses, groupByBook, isFullBibleLoaded
 } from '../core/verse-search-service.js';
+import { BOOK_NAMES } from '../data/book-names.js';
 
 /**
  * 转义 HTML
@@ -100,27 +101,26 @@ export function renderVerseNote({ container, onPick }) {
     const scopeSel = container.querySelector('#vnScope');
     const resultsEl = container.querySelector('#vnResults');
 
-    let booksCache = null;
-
     /**
      * 确保全本已加载（失败则给出降级提示）
-     * @returns {Promise<string[]|null>}
+     * @returns {Promise<boolean>}
      */
     async function ensureLoaded() {
-        if (booksCache) return booksCache;
-        if (!isFullBibleLoaded()) {
-            statusEl.textContent = '正在加载经文库…';
-            statusEl.style.display = 'block';
-        }
-        try {
-            booksCache = await getBooks();
+        if (isFullBibleLoaded()) {
             statusEl.style.display = 'none';
-            return booksCache;
+            return true;
+        }
+        statusEl.textContent = '正在加载经文库…';
+        statusEl.style.display = 'block';
+        try {
+            await loadFullBible();
+            statusEl.style.display = 'none';
+            return true;
         } catch (error) {
             console.error('经文库加载失败:', error);
             statusEl.textContent = '经文库加载失败，请检查网络后重试。';
             statusEl.style.display = 'block';
-            return null;
+            return false;
         }
     }
 
@@ -221,8 +221,8 @@ export function renderVerseNote({ container, onPick }) {
             resultsEl.innerHTML = '<div class="verse-note-empty">请输入要搜索的词句</div>';
             return;
         }
-        const books = await ensureLoaded();
-        if (!books) {
+        const ok = await ensureLoaded();
+        if (!ok) {
             resultsEl.innerHTML = '<div class="verse-note-empty">经文库不可用</div>';
             return;
         }
@@ -245,8 +245,8 @@ export function renderVerseNote({ container, onPick }) {
     });
 
     /**
-     * 把书卷填进两个下拉（卷选择器 + 搜索范围）
-     * @param {string[]} books
+     * 先同步填上静态卷名（0.5KB，不用等全本），再在后台加载经文正文。
+     * 否则弱网下卷名下拉会空十几秒。
      */
     function populateBookSelects(books) {
         if (!bookSel.options.length) {
@@ -274,14 +274,11 @@ export function renderVerseNote({ container, onPick }) {
             container.querySelectorAll('.verse-note-pane').forEach((pane) => {
                 pane.style.display = pane.dataset.pane === tab.dataset.tab ? '' : 'none';
             });
-            ensureLoaded().then((books) => {
-                if (books) populateBookSelects(books);
-            });
+            ensureLoaded();
         });
     });
 
-    // 打开即预加载经文库
-    ensureLoaded().then((books) => {
-        if (books) populateBookSelects(books);
-    });
+    // 打开即可用：卷名静态渲染（不用等全本），经文正文在后台加载
+    populateBookSelects(BOOK_NAMES);
+    ensureLoaded();
 }

@@ -18,6 +18,8 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const SRC = path.join(ROOT, 'data', 'bible-cn', 'cus', 'books.txt');
 const OUT = path.join(ROOT, 'src', 'data', 'bible-full.js');
+// 轻量卷名索引（与全本同源生成，避免两边卷名不同步）
+const OUT_BOOKS = path.join(ROOT, 'src', 'data', 'book-names.js');
 
 // 已知的繁简不统一：books.txt 里「啟示录」是繁体，其余卷名均为简体
 const BOOK_NAME_FIXES = { '啟示录': '启示录' };
@@ -181,6 +183,20 @@ function main() {
     fs.writeFileSync(OUT, body, 'utf8');
     const size = fs.statSync(OUT).size;
     console.log(`已写入 ${path.relative(ROOT, OUT)}  ${(size / 1048576).toFixed(2)} MB`);
+
+    // 同步生成卷名索引：界面先把卷名下拉渲染出来，不必等 3.3MB 的全本
+    const booksModule = `/**
+ * 书卷索引（轻量，由 scripts/build-bible-full.js 自动生成，请勿手改）
+ *
+ * 全本经文 3.3MB（gzip 后仍 1.2MB），弱网下要十几秒才能到。但「按卷查找」
+ * 的卷名下拉没必要等全本 —— 先把这个 ${books.length} 个卷名的列表同步渲染，
+ * 界面立刻可用，经文正文再去后台加载。
+ */
+
+export const BOOK_NAMES = ${JSON.stringify(books, null, 4)};
+`;
+    fs.writeFileSync(OUT_BOOKS, booksModule, 'utf8');
+    console.log(`已写入 ${path.relative(ROOT, OUT_BOOKS)}  ${fs.statSync(OUT_BOOKS).size} B`);
 }
 
 main();
