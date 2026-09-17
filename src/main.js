@@ -385,7 +385,7 @@ function saveAnswer() {
 
     const answer = elements.answerInput.value.trim();
     if (!answer) {
-        showToast('请先输入你的回答。', 'error');
+        showToast('请先写下你的感受。', 'error');
         return;
     }
 
@@ -422,8 +422,10 @@ function saveAnswer() {
 function openShareModal() {
     if (!state.currentCard) return;
 
-    elements.shareQuestion.textContent = state.currentCard.question;
-    const answer = getSavedAnswerForCurrentCard() || '（点击“保存回答”后可展示你的回答）';
+    elements.shareQuestion.textContent = state.currentCard.reference
+        ? `${state.currentCard.reference}　${state.currentCard.text || ''}`
+        : (state.currentCard.question || '');
+    const answer = getSavedAnswerForCurrentCard() || '（点击“写下感受”后可展示你的感受）';
     elements.shareAnswer.textContent = answer;
     elements.shareModal.classList.add('active');
 }
@@ -455,7 +457,10 @@ function fallbackCopy(text) {
 async function copyShareLink() {
     if (!state.currentCard) return;
 
-    const text = `心语卡牌\n\n${state.currentCard.question}\n\n来自心语卡牌`;
+    const verse = state.currentCard.reference
+        ? `${state.currentCard.text}\n—— ${state.currentCard.reference}`
+        : (state.currentCard.question || '');
+    const text = `圣经金句\n\n${verse}\n\n来自圣经金句`;
 
     try {
         if (navigator.clipboard?.writeText) {
@@ -487,7 +492,7 @@ async function copyShareLink() {
  */
 async function generateShareImage() {
     if (!state.currentCard) {
-        showToast('请先抽取一张卡牌', 'error');
+        showToast('请先抽取一节经文', 'error');
         return;
     }
 
@@ -496,7 +501,9 @@ async function generateShareImage() {
 
         // 更新分享卡片模板内容
         elements.shareCardCategory.textContent = categoryNames[state.currentCard.category] || state.currentCard.category;
-        elements.shareCardQuestion.textContent = state.currentCard.question;
+        elements.shareCardQuestion.textContent = state.currentCard.text || state.currentCard.question || '';
+        const shareRefEl = document.getElementById('shareCardRef');
+        if (shareRefEl) shareRefEl.textContent = state.currentCard.reference ? `—— ${state.currentCard.reference}` : '';
 
         // 获取用户回答
         const answer = getSavedAnswerForCurrentCard();
@@ -566,7 +573,7 @@ function downloadShareImage() {
     }
 
     const link = document.createElement('a');
-    link.download = `心语卡牌_${Date.now()}.png`;
+    link.download = `圣经金句_${Date.now()}.png`;
     link.href = currentGeneratedImage;
     link.click();
 
@@ -579,7 +586,7 @@ function downloadShareImage() {
  */
 function generateShareLink() {
     if (!state.currentCard) {
-        showToast('请先抽取一张卡牌', 'error');
+        showToast('请先抽取一节经文', 'error');
         return;
     }
 
@@ -588,11 +595,16 @@ function generateShareLink() {
         const answer = getSavedAnswerForCurrentCard();
 
         // 构建分享数据
+        // 分享数据自带经文，不依赖对方本地有没有这条记录
+        // （手记不在 200 条池里，靠 cardId 查找会失败）
         const shareData = {
             cardId: state.currentCard.id,
             category: state.currentCard.category,
             level: state.currentCard.level,
             question: state.currentCard.question,
+            reference: state.currentCard.reference,
+            text: state.currentCard.text,
+            source: state.currentCard.isDailyVerse ? 'daily' : (state.currentCard.sourceHint || state.pendingSource || 'draw'),
             answer: answer || '',
             timestamp: Date.now()
         };
@@ -633,10 +645,21 @@ function handleShareLink() {
         const decoded = decodeURIComponent(atob(encoded));
         const shareData = JSON.parse(decoded);
 
-        // 查找卡牌
-        const card = cards.find(c => c.id === shareData.cardId);
+        // 优先用链接自带的经文（手记不在官方卡池里，按 id 找不到）
+        let card = null;
+        if (shareData.reference && shareData.text) {
+            card = {
+                id: shareData.cardId,
+                category: shareData.category,
+                reference: shareData.reference,
+                text: shareData.text,
+                question: shareData.question
+            };
+        } else {
+            card = cards.find(c => c.id === shareData.cardId);
+        }
         if (!card) {
-            showToast('分享的卡牌不存在或已被删除', 'error');
+            showToast('分享的经文不存在或已被删除', 'error');
             return;
         }
 
@@ -654,8 +677,8 @@ function handleShareLink() {
                 source: shareData.source || 'draw'
             };
 
-            // 检查是否已存在相同卡牌的回答
-            const existingIndex = state.history.findIndex(h => h.card.id === card.id);
+            // 检查是否已存在相同经文的感受
+            const existingIndex = state.history.findIndex(h => (h.card || {}).reference === card.reference);
             if (existingIndex === -1) {
                 state.history.unshift(historyItem);
                 saveHistory(state.history);
@@ -666,7 +689,7 @@ function handleShareLink() {
         // 清除 hash
         window.history.replaceState(null, null, window.location.pathname);
 
-        showToast('已加载分享的卡牌', 'success');
+        showToast('已加载分享的经文', 'success');
         elements.cardContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
     } catch (error) {
         console.error('解析分享链接失败:', error);
@@ -735,7 +758,7 @@ async function exportStatsImage() {
         // 转换为图片数据并下载
         const imageData = canvas.toDataURL('image/png');
         const link = document.createElement('a');
-        link.download = `心语卡牌报告_${Date.now()}.png`;
+        link.download = `圣经金句灵修报告_${Date.now()}.png`;
         link.href = imageData;
         link.click();
 
@@ -854,7 +877,8 @@ function openVerseNoteModal() {
                 text: verse.text,
                 book: verse.book,
                 chapter: verse.chapter,
-                verse: verse.verse
+                verse: verse.verse,
+                sourceHint: 'note'
             };
             openSaveModal('note');
         }
@@ -932,7 +956,7 @@ function handleReadAloud() {
     }
 
     if (!state.currentCard) {
-        showToast('请先抽取一张卡牌', 'error');
+        showToast('请先抽取一节经文', 'error');
         return;
     }
 
@@ -1126,7 +1150,7 @@ function stopVoiceInput() {
 }
 
 function init() {
-    // 迁移旧命名空间（heartTalk* → bible*），解除与心语卡牌的串台
+    // 迁移旧命名空间（heartTalk* → bible*），解除与心语卡牌的 key 冲突
     migrateLegacyStorage();
 
     applyTheme(getStoredTheme());

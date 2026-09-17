@@ -1277,13 +1277,21 @@ header p {
 
 .share-card-question {
     font-family: 'Noto Serif SC', 'Songti SC', serif;
-    font-size: 32px;
-    line-height: 1.6;
+    font-size: 28px;
+    line-height: 1.75;
     color: #1b5e20;
     font-weight: 600;
     text-align: center;
-    padding: 20px 0;
+    padding: 20px 0 12px;
+}
+
+.share-card-ref {
+    font-size: 18px;
+    color: #4e7a63;
+    text-align: center;
+    padding-bottom: 18px;
     border-bottom: 1px dashed rgba(46, 125, 50, 0.2);
+    font-weight: 500;
 }
 
 /* 回答区域 */
