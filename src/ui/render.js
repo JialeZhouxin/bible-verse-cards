@@ -105,11 +105,6 @@ export function renderHistory({ history, categoryNames, historyList, onEdit, onD
             tagsRow.appendChild(categoryTag);
         }
 
-        if (card.reference) {
-            const badge = createElement('span', 'level-badge verse-reference-badge');
-            badge.textContent = card.reference;
-            tagsRow.appendChild(badge);
-        }
         if (tagsRow.childNodes.length) {
             wrapper.appendChild(tagsRow);
         }
@@ -117,7 +112,9 @@ export function renderHistory({ history, categoryNames, historyList, onEdit, onD
         // 经文原文 + 我的感受
         if (card.text) {
             wrapper.appendChild(createElement('div', 'question verse-text', card.text));
-            wrapper.appendChild(createElement('div', 'verse-reference', card.reference || ''));
+            wrapper.appendChild(createElement('div', 'verse-reference', card.reference ? `—— ${card.reference}` : ''));
+        } else if (card.reference) {
+            wrapper.appendChild(createElement('div', 'verse-reference', `—— ${card.reference}`));
         }
         wrapper.appendChild(createElement('div', 'answer', item.answer));
         

@@ -91,7 +91,8 @@ export function migrateLegacyStorage() {
                 const seen = new Set(merged.map((it) => it && it.id));
                 verseRecords.forEach((it) => {
                     if (it && !seen.has(it.id)) {
-                        merged.push(it);
+                        // 旧数据没有来源字段，按「抽取金句」处理
+                        merged.push(it.source ? it : { ...it, source: 'draw' });
                         seen.add(it.id);
                     }
                 });

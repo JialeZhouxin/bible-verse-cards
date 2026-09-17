@@ -1,4 +1,4 @@
-# Git ignore for heart-talk-cards
+# Git ignore for bible-verse-cards
 
 # Development files
 node_modules/
@@ -28,4 +28,6 @@ Thumbs.db
 # Local temp files
 .npm-cache/
 .spec-workflow/
+.serena/
+CLAUDE.md
 .tmp-script.js

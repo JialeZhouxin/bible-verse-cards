@@ -2164,7 +2164,8 @@ function migrateLegacyStorage() {
                 const seen = new Set(merged.map((it) => it && it.id));
                 verseRecords.forEach((it) => {
                     if (it && !seen.has(it.id)) {
-                        merged.push(it);
+                        // 旧数据没有来源字段，按「抽取金句」处理
+                        merged.push(it.source ? it : { ...it, source: 'draw' });
                         seen.add(it.id);
                     }
                 });
@@ -2851,11 +2852,6 @@ function renderHistory({ history, categoryNames, historyList, onEdit, onDelete }
             tagsRow.appendChild(categoryTag);
         }
 
-        if (card.reference) {
-            const badge = createElement('span', 'level-badge verse-reference-badge');
-            badge.textContent = card.reference;
-            tagsRow.appendChild(badge);
-        }
         if (tagsRow.childNodes.length) {
             wrapper.appendChild(tagsRow);
         }
@@ -2863,7 +2859,9 @@ function renderHistory({ history, categoryNames, historyList, onEdit, onDelete }
         // 经文原文 + 我的感受
         if (card.text) {
             wrapper.appendChild(createElement('div', 'question verse-text', card.text));
-            wrapper.appendChild(createElement('div', 'verse-reference', card.reference || ''));
+            wrapper.appendChild(createElement('div', 'verse-reference', card.reference ? `—— ${card.reference}` : ''));
+        } else if (card.reference) {
+            wrapper.appendChild(createElement('div', 'verse-reference', `—— ${card.reference}`));
         }
         wrapper.appendChild(createElement('div', 'answer', item.answer));
         
@@ -5209,7 +5207,8 @@ function renderModalVoiceControls(options = {}) {
 const state = {
     currentCard: null,
     currentCategory: 'all',
-    history: loadHistory(),
+    // 先在 init() 里跑迁移，再从 localStorage 读记录
+    history: [],
     historyFilters: {
         date: 'all',
         category: 'all',
@@ -6333,8 +6332,10 @@ function stopVoiceInput() {
 }
 
 function init() {
-    // 迁移旧命名空间（heartTalk* → bible*），解除与心语卡牌的 key 冲突
+    // 迁移旧命名空间（heartTalk* → bible*），解除与心语卡牌的 key 冲突。
+    // 必须在读 history 之前跑，否则首次启动会看不到迁移过来的记录。
     migrateLegacyStorage();
+    state.history = loadHistory();
 
     applyTheme(getStoredTheme());
     refreshCardView();

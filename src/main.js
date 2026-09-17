@@ -26,7 +26,8 @@ import {
 const state = {
     currentCard: null,
     currentCategory: 'all',
-    history: loadHistory(),
+    // 先在 init() 里跑迁移，再从 localStorage 读记录
+    history: [],
     historyFilters: {
         date: 'all',
         category: 'all',
@@ -1150,8 +1151,10 @@ function stopVoiceInput() {
 }
 
 function init() {
-    // 迁移旧命名空间（heartTalk* → bible*），解除与心语卡牌的 key 冲突
+    // 迁移旧命名空间（heartTalk* → bible*），解除与心语卡牌的 key 冲突。
+    // 必须在读 history 之前跑，否则首次启动会看不到迁移过来的记录。
     migrateLegacyStorage();
+    state.history = loadHistory();
 
     applyTheme(getStoredTheme());
     refreshCardView();

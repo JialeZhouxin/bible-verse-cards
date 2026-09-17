@@ -39,11 +39,12 @@ jobs:
           mkdir -p dist
           
           # Copy all files to dist
-          cp -r index.html src docs scripts dist/
+          cp -r index.html sw.js manifest.webmanifest icons src docs scripts dist/
           
           # Remove unnecessary files
           rm -f dist/scripts/check-ui-chinese.js
           rm -f dist/scripts/sync-bundle-from-cards.js
+          rm -f dist/scripts/sync-bundle-bible.js
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
