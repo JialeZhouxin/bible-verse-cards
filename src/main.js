@@ -29,7 +29,8 @@ const state = {
     history: loadHistory(),
     historyFilters: {
         date: 'all',
-        category: 'all'
+        category: 'all',
+        source: 'all'
     },
     editingItem: null,
     pendingSource: null,

@@ -90,10 +90,16 @@ export function renderHistory({ history, categoryNames, historyList, onEdit, onD
         header.appendChild(actions);
         wrapper.appendChild(header);
 
-        // 主题标签 + 经文出处（容忍旧数据里缺失 card 的记录）
+        // 主题标签 + 来源 + 经文出处（容忍旧数据里缺失 card 的记录）
         const card = item.card || {};
+        const SOURCE_LABELS = { draw: '抽卡', daily: '每日', note: '手记' };
+        const source = item.source || 'draw';
         const tagsRow = createElement('div', 'history-item-tags');
-        if (card.category) {
+        if (item.source || item.source === undefined) {
+            const sourceTag = createElement('span', `source-tag source-${source}`, SOURCE_LABELS[source] || source);
+            tagsRow.appendChild(sourceTag);
+        }
+        if (card.category && card.category !== 'note') {
             const categoryName = categoryNames[card.category] || card.category;
             const categoryTag = createElement('span', `category-tag category-${card.category}`, categoryName);
             tagsRow.appendChild(categoryTag);
@@ -138,7 +144,7 @@ export function renderHistory({ history, categoryNames, historyList, onEdit, onD
  * 渲染筛选控件
  * @param {Object} params - 参数对象
  * @param {HTMLElement} params.container - 容器元素
- * @param {Object} params.categoryNames - 类别名称映射
+ * @param {Object} params.categoryNames - 主题名称映射
  * @param {Function} params.onFilterChange - 筛选变化回调
  */
 export function renderHistoryFilters({ container, categoryNames, onFilterChange }) {
@@ -168,15 +174,16 @@ export function renderHistoryFilters({ container, categoryNames, onFilterChange 
     dateFilterGroup.appendChild(dateSelect);
     wrapper.appendChild(dateFilterGroup);
     
-    // 类别筛选
+    // 主题筛选
     const categoryFilterGroup = createElement('div', 'filter-group');
-    categoryFilterGroup.appendChild(createElement('label', '', '类别：'));
+    categoryFilterGroup.appendChild(createElement('label', '', '主题：'));
     
     const categorySelect = createElement('select', 'filter-select');
     categorySelect.dataset.filterType = 'category';
     const categoryOptions = [
-        { value: 'all', label: '全部类别' },
-        ...Object.entries(categoryNames).map(([key, name]) => ({ value: key, label: name }))
+        { value: 'all', label: '全部主题' },
+        ...Object.entries(categoryNames).map(([key, name]) => ({ value: key, label: name })),
+        { value: 'note', label: '手记' }
     ];
     categoryOptions.forEach(opt => {
         const option = document.createElement('option');
@@ -186,15 +193,37 @@ export function renderHistoryFilters({ container, categoryNames, onFilterChange 
     });
     categoryFilterGroup.appendChild(categorySelect);
     wrapper.appendChild(categoryFilterGroup);
+
+    // 来源筛选
+    const sourceFilterGroup = createElement('div', 'filter-group');
+    sourceFilterGroup.appendChild(createElement('label', '', '来源：'));
+
+    const sourceSelect = createElement('select', 'filter-select');
+    sourceSelect.dataset.filterType = 'source';
+    [
+        { value: 'all', label: '全部来源' },
+        { value: 'draw', label: '抽取金句' },
+        { value: 'daily', label: '今日经文' },
+        { value: 'note', label: '手记' }
+    ].forEach((opt) => {
+        const option = document.createElement('option');
+        option.value = opt.value;
+        option.textContent = opt.label;
+        sourceSelect.appendChild(option);
+    });
+    sourceFilterGroup.appendChild(sourceSelect);
+    wrapper.appendChild(sourceFilterGroup);
     
     // 绑定事件
     if (onFilterChange) {
-        dateSelect.addEventListener('change', (e) => {
-            onFilterChange({ date: e.target.value, category: categorySelect.value });
+        const emit = () => onFilterChange({
+            date: dateSelect.value,
+            category: categorySelect.value,
+            source: sourceSelect.value
         });
-        categorySelect.addEventListener('change', (e) => {
-            onFilterChange({ date: dateSelect.value, category: e.target.value });
-        });
+        dateSelect.addEventListener('change', emit);
+        categorySelect.addEventListener('change', emit);
+        sourceSelect.addEventListener('change', emit);
     }
     
     container.appendChild(wrapper);

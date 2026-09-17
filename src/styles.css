@@ -486,11 +486,32 @@ header p {
     border: 1px solid transparent;
 }
 
-.category-couple { background: #fce4ec; color: #c2185b; border-color: #f8bbd9; }
-.category-friend { background: #e3f2fd; color: #1976d2; border-color: #bbdefb; }
-.category-family { background: #fff3e0; color: #f57c00; border-color: #ffe0b2; }
-.category-self { background: #f3e5f5; color: #7b1fa2; border-color: #e1bee7; }
-.category-clear_thinking { background: #e8f5e9; color: #388e3c; border-color: #c8e6c9; }
+.category-comfort { background: #e3f2fd; color: #2c6fbb; border-color: #bbdefb; }
+.category-love { background: #fdeaea; color: #c0392b; border-color: #f8d0d0; }
+.category-faith { background: #f3e5f5; color: #7d3c98; border-color: #e1bee7; }
+.category-strength { background: #fff3e0; color: #c87f0a; border-color: #ffe0b2; }
+.category-wisdom { background: #e0f2f1; color: #148f77; border-color: #b2dfdb; }
+.category-forgiveness { background: #e3f2fd; color: #2471a3; border-color: #bbdefb; }
+.category-hope { background: #fdf1e3; color: #ca6f1e; border-color: #f8ddbe; }
+
+/* 来源标签：抽卡 / 每日 / 手记 */
+.source-tag {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.source-draw { background: #eef4fb; color: #3f6fa8; border-color: #d3e2f2; }
+.source-daily { background: #fdf1e3; color: #b9651c; border-color: #f6ddc2; }
+.source-note { background: #e6f5f2; color: #17796c; border-color: #c3e6e0; }
+
+:root[data-theme='dark'] .source-draw { background: #23303d; color: #9fc4e8; border-color: #35485a; }
+:root[data-theme='dark'] .source-daily { background: #3a2d20; color: #e8b98a; border-color: #55412d; }
+:root[data-theme='dark'] .source-note { background: #1e3431; color: #8fd8cc; border-color: #2e4c48; }
 
 .history-item .updated-at {
     font-size: 0.75rem;
