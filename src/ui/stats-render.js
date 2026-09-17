@@ -3,7 +3,9 @@
  * 负责渲染统计图表和报告界面
  */
 
-import { generateFullReport, calculateBasicStats, calculateCategoryDistribution } from '../core/stats.js';
+import {
+    generateFullReport, calculateBasicStats, calculateCategoryDistribution, calculateDailyActivity
+} from '../core/stats.js';
 import { getStreakDays, getRecentCheckInStatus } from '../core/check-in.js';
 
 /**
@@ -177,7 +179,6 @@ export function renderBarChart({ container, data, title }) {
  * @param {Array} params.history - 历史记录
  */
 export async function renderActivityHeatmap({ container, history }) {
-    const { calculateDailyActivity } = await import('../core/stats.js');
     const activity = calculateDailyActivity(history, 7);
 
     const maxCount = Math.max(...activity.map(d => d.count), 1);
@@ -314,7 +315,6 @@ export async function renderFullStatsReport({ container, history, onExportImage 
     renderPieChart({ container: sourceChartContainer, data: report.sourceDistribution, title: '记录来源' });
 
     // 动态导入避免循环依赖
-    const { calculateDailyActivity } = await import('../core/stats.js');
     const activity = calculateDailyActivity(history, 7);
     const maxCount = Math.max(...activity.map(d => d.count), 1);
 
