@@ -4,8 +4,9 @@
  */
 
 import { drawRandomCard } from './card-service.js';
+import { STORAGE_KEYS } from './storage-migration.js';
 
-const DAILY_CARD_KEY = 'heartTalkDailyCard';
+const DAILY_CARD_KEY = STORAGE_KEYS.dailyCard;
 const DAILY_CARD_VERSION = 1;
 
 /**

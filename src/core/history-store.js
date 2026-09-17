@@ -1,4 +1,6 @@
-﻿const HISTORY_KEY = 'heartTalkHistory';
+import { STORAGE_KEYS } from './storage-migration.js';
+
+const HISTORY_KEY = STORAGE_KEYS.history;
 
 export function loadHistory() {
     try {

@@ -1,5 +1,5 @@
-﻿import { cards } from './data/cards.js';
-import { filterCards, drawRandomCard, getFullCardPool } from './core/card-service.js';
+﻿import { cards, categories } from './data/cards.js';
+import { filterCards, drawRandomCard } from './core/card-service.js';
 import { loadHistory, saveHistory, clearHistoryStore, updateHistoryItem, deleteHistoryItem } from './core/history-store.js';
 import { filterHistory, exportToJSON, downloadJSON } from './core/history-filter.js';
 import { generateHistoryAlbumImage, downloadAlbumImage } from './core/history-export.js';
@@ -7,21 +7,11 @@ import { renderCard, renderHistory, renderHistoryFilters, renderExportControls }
 import { renderFullStatsReport } from './ui/stats-render.js';
 import { checkInOnSave, getStreakDays } from './core/check-in.js';
 import {
-    loadCustomCards, addCustomCard, updateCustomCard, deleteCustomCard,
-    getCustomCardCount, exportCustomCardsToJSON, importCustomCardsFromJSON
-} from './core/custom-card-service.js';
-import {
-    getAllCardPacks, importCardPackFromJSON, downloadCardPack,
-    setActiveCardPack, getActiveCardPack, clearActiveCardPack,
-    deleteCardPack, BUILT_IN_PACKS
-} from './core/card-pack-service.js';
-import {
     getTodayCard, markTodayCardAnswered, getDailyCardStatus,
     getDailyCardStreak, getRecentDailyStatus
 } from './core/daily-card-service.js';
-import { renderCustomCardManager, renderCustomCardForm } from './ui/custom-card-render.js';
-import { renderCardPackManager, renderCardPackPreview, renderActivePackIndicator } from './ui/card-pack-render.js';
-import { renderDailyCardSection, renderDailyCalendar } from './ui/daily-card-render.js';
+import { renderDailyCardSection } from './ui/daily-card-render.js';
+import { migrateLegacyStorage, STORAGE_KEYS } from './core/storage-migration.js';
 import {
     createSpeechSynthesizer,
     createSpeechRecognizer,
@@ -38,15 +28,13 @@ import {
 const state = {
     currentCard: null,
     currentCategory: 'all',
-    currentLevel: 'all',
     history: loadHistory(),
     historyFilters: {
         date: 'all',
         category: 'all'
     },
     editingItem: null,
-    customCards: loadCustomCards(),
-    cardPacks: getAllCardPacks(),
+    pendingSource: null,
     todayCard: null,
     voice: {
         isReading: false,
@@ -62,7 +50,7 @@ const UI_TIMING = {
     toastExitMs: 180
 };
 
-const THEME_KEY = 'heartTalkTheme';
+const THEME_KEY = STORAGE_KEYS.theme;
 const THEME_CHOICES = ['forest', 'warm', 'dark'];
 const THEME_LABELS = {
     forest: '\u6d45\u7eff\u68ee\u6797',
@@ -100,7 +88,6 @@ const elements = {
     closeShareBtn: document.getElementById('closeShareBtn'),
     clearHistoryBtn: document.getElementById('clearHistoryBtn'),
     categoryFilters: document.getElementById('categoryFilters'),
-    levelFilters: document.getElementById('levelFilters'),
     toastContainer: document.getElementById('toastContainer'),
     confirmModal: document.getElementById('confirmModal'),
     confirmMessage: document.getElementById('confirmMessage'),
@@ -123,16 +110,6 @@ const elements = {
     statsModal: document.getElementById('statsModal'),
     statsContainer: document.getElementById('statsContainer'),
     closeStatsBtn: document.getElementById('closeStatsBtn'),
-    // 自定义卡牌元素
-    customCardBtn: document.getElementById('customCardBtn'),
-    customCardModal: document.getElementById('customCardModal'),
-    customCardContainer: document.getElementById('customCardContainer'),
-    closeCustomCardBtn: document.getElementById('closeCustomCardBtn'),
-    // 卡牌包元素
-    cardPackBtn: document.getElementById('cardPackBtn'),
-    cardPackModal: document.getElementById('cardPackModal'),
-    cardPackContainer: document.getElementById('cardPackContainer'),
-    closeCardPackBtn: document.getElementById('closeCardPackBtn'),
     // 每日推荐元素
     dailyCardSection: document.getElementById('dailyCardSection'),
     dailyCardContainer: document.getElementById('dailyCardContainer'),
@@ -145,19 +122,8 @@ const elements = {
 // 当前生成的图片数据
 let currentGeneratedImage = null;
 
-function buildNamesMap(selector, dataKey) {
-    const map = {};
-    document.querySelectorAll(selector).forEach((btn) => {
-        const key = btn.dataset[dataKey];
-        if (key && key !== 'all') {
-            map[key] = btn.textContent.trim();
-        }
-    });
-    return map;
-}
-
-const categoryNames = buildNamesMap('#categoryFilters .filter-btn', 'category');
-const levelNames = buildNamesMap('#levelFilters .filter-btn', 'level');
+// 主题名称以 cards.js 的 categories 为唯一真源（不再从 HTML 按钮文案反推）
+const categoryNames = Object.fromEntries(categories.map((c) => [c.id, c.name]));
 
 function getSavedAnswerForCurrentCard() {
     if (!state.currentCard) return '';
@@ -169,7 +135,6 @@ function refreshCardView() {
     renderCard({
         currentCard: state.currentCard,
         categoryNames,
-        levelNames,
         elements
     });
 
@@ -185,7 +150,6 @@ function refreshHistoryView() {
     const filteredHistory = getFilteredHistory();
     renderHistory({
         history: filteredHistory,
-        levelNames,
         categoryNames,
         historyList: elements.historyList,
         onEdit: openEditModal,
@@ -200,7 +164,10 @@ function handleHistoryFilterChange(filters) {
 
 function openEditModal(item) {
     state.editingItem = item;
-    elements.editModalQuestion.textContent = item.card.question;
+    const card = item.card || {};
+    elements.editModalQuestion.textContent = card.reference
+        ? `${card.reference}　${card.text || ''}`
+        : (card.question || '');
     elements.editAnswerInput.value = item.answer;
     elements.editModal.classList.add('active');
     elements.editAnswerInput.focus();
@@ -273,7 +240,7 @@ async function handleExportImage() {
     
     try {
         showToast('正在生成图片...', 'info');
-        const imageData = await generateHistoryAlbumImage(filteredHistory, categoryNames, levelNames);
+        const imageData = await generateHistoryAlbumImage(filteredHistory, categoryNames);
         downloadAlbumImage(imageData);
         showToast('图片已下载', 'success');
     } catch (error) {
@@ -377,9 +344,7 @@ function showConfirm(message) {
 }
 
 function drawCard() {
-    // 获取完整的卡牌池（官方 + 自定义 + 激活的卡牌包）
-    const fullCardPool = getFullCardPool(cards);
-    const filtered = filterCards(fullCardPool, state.currentCategory, state.currentLevel);
+    const filtered = filterCards(cards, state.currentCategory);
 
     if (!filtered.length) {
         showToast('当前筛选条件下没有可用卡牌，请调整筛选后重试。', 'error');
@@ -395,8 +360,7 @@ function drawCard() {
  * 抽取今日卡牌
  */
 function drawTodayCard() {
-    const fullCardPool = getFullCardPool(cards);
-    const todayCard = getTodayCard(fullCardPool);
+    const todayCard = getTodayCard(cards);
 
     if (!todayCard) {
         showToast('获取今日卡牌失败', 'error');
@@ -410,9 +374,12 @@ function drawTodayCard() {
     showToast('🌟 今日推荐卡牌', 'success');
 }
 
-function openSaveModal() {
+function openSaveModal(source = 'draw') {
     if (!state.currentCard) return;
-    elements.saveModalQuestion.textContent = state.currentCard.question;
+    state.pendingSource = source;
+    elements.saveModalQuestion.textContent = state.currentCard.reference
+        ? `${state.currentCard.reference}　${state.currentCard.text || ''}`
+        : (state.currentCard.question || '');
     elements.answerInput.value = '';
     elements.saveModal.classList.add('active');
     elements.answerInput.focus();
@@ -440,8 +407,10 @@ function saveAnswer() {
         id: Date.now(),
         timestamp: new Date().toLocaleString('zh-CN'),
         card: state.currentCard,
-        answer
+        answer,
+        source: state.pendingSource || 'draw'
     };
+    state.pendingSource = null;
 
     state.history.unshift(historyItem);
     if (!saveHistory(state.history)) {
@@ -700,7 +669,8 @@ function handleShareLink() {
                 id: Date.now(),
                 timestamp: new Date(shareData.timestamp || Date.now()).toLocaleString('zh-CN'),
                 card: card,
-                answer: shareData.answer
+                answer: shareData.answer,
+                source: shareData.source || 'draw'
             };
 
             // 检查是否已存在相同卡牌的回答
@@ -803,7 +773,7 @@ function setActiveFilterButton(container, target) {
 
 function setupEventListeners() {
     elements.drawBtn.addEventListener('click', drawCard);
-    elements.saveBtn.addEventListener('click', openSaveModal);
+    elements.saveBtn.addEventListener('click', () => openSaveModal('draw'));
     elements.shareBtn.addEventListener('click', openShareModal);
     elements.confirmSaveBtn.addEventListener('click', saveAnswer);
     elements.cancelSaveBtn.addEventListener('click', closeSaveModal);
@@ -848,13 +818,6 @@ function setupEventListeners() {
         }
     });
 
-    elements.levelFilters.addEventListener('click', (event) => {
-        setActiveFilterButton(elements.levelFilters, event.target);
-        if (event.target.dataset.level) {
-            state.currentLevel = event.target.dataset.level;
-        }
-    });
-
     elements.saveModal.addEventListener('click', (event) => {
         if (event.target === elements.saveModal) closeSaveModal();
     });
@@ -876,228 +839,6 @@ function setupEventListeners() {
         });
     }
 
-    // 自定义卡牌事件监听
-    if (elements.customCardBtn) {
-        elements.customCardBtn.addEventListener('click', openCustomCardModal);
-    }
-    if (elements.closeCustomCardBtn) {
-        elements.closeCustomCardBtn.addEventListener('click', closeCustomCardModal);
-    }
-    if (elements.customCardModal) {
-        elements.customCardModal.addEventListener('click', (event) => {
-            if (event.target === elements.customCardModal) closeCustomCardModal();
-        });
-    }
-
-    // 卡牌包事件监听
-    if (elements.cardPackBtn) {
-        elements.cardPackBtn.addEventListener('click', openCardPackModal);
-    }
-    if (elements.closeCardPackBtn) {
-        elements.closeCardPackBtn.addEventListener('click', closeCardPackModal);
-    }
-    if (elements.cardPackModal) {
-        elements.cardPackModal.addEventListener('click', (event) => {
-            if (event.target === elements.cardPackModal) closeCardPackModal();
-        });
-    }
-}
-
-// ==================== 自定义卡牌功能 ====================
-
-function openCustomCardModal() {
-    if (!elements.customCardModal || !elements.customCardContainer) return;
-
-    renderCustomCardManager({
-        container: elements.customCardContainer,
-        onAdd: () => openCustomCardForm(),
-        onEdit: (card) => openCustomCardForm(card),
-        onDelete: handleDeleteCustomCard,
-        onImport: handleImportCustomCards,
-        onExport: handleExportCustomCards
-    });
-
-    elements.customCardModal.classList.add('active');
-}
-
-function closeCustomCardModal() {
-    if (elements.customCardModal) {
-        elements.customCardModal.classList.remove('active');
-    }
-}
-
-function openCustomCardForm(card = null) {
-    if (!elements.customCardContainer) return;
-
-    renderCustomCardForm({
-        container: elements.customCardContainer,
-        card,
-        onSave: (data) => handleSaveCustomCard(data, card?.id),
-        onCancel: () => openCustomCardModal() // 返回列表
-    });
-}
-
-function handleSaveCustomCard(data, editId = null) {
-    let result;
-
-    if (editId) {
-        result = updateCustomCard(editId, data);
-        if (result) {
-            showToast('自定义卡牌已更新', 'success');
-        } else {
-            showToast('更新失败，请重试', 'error');
-            return;
-        }
-    } else {
-        result = addCustomCard(data);
-        if (result) {
-            showToast('自定义卡牌已创建', 'success');
-        } else {
-            showToast('创建失败，请重试', 'error');
-            return;
-        }
-    }
-
-    // 刷新状态
-    state.customCards = loadCustomCards();
-    openCustomCardModal(); // 返回列表
-}
-
-async function handleDeleteCustomCard(cardId) {
-    const confirmed = await showConfirm('确定要删除这张自定义卡牌吗？此操作不可恢复。');
-    if (!confirmed) return;
-
-    const success = deleteCustomCard(cardId);
-    if (success) {
-        state.customCards = loadCustomCards();
-        openCustomCardModal(); // 刷新列表
-        showToast('自定义卡牌已删除', 'success');
-    } else {
-        showToast('删除失败，请重试', 'error');
-    }
-}
-
-function handleExportCustomCards() {
-    const jsonString = exportCustomCardsToJSON();
-    const blob = new Blob([jsonString], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `心语自定义卡牌_${new Date().toISOString().split('T')[0]}.json`;
-    link.click();
-
-    URL.revokeObjectURL(url);
-    showToast('自定义卡牌已导出', 'success');
-}
-
-async function handleImportCustomCards(file) {
-    try {
-        const text = await file.text();
-        const result = importCustomCardsFromJSON(text, true); // true = 合并模式
-
-        if (result >= 0) {
-            state.customCards = loadCustomCards();
-            openCustomCardModal(); // 刷新列表
-            showToast(`成功导入 ${result} 张自定义卡牌`, 'success');
-        } else {
-            showToast('导入失败，请检查文件格式', 'error');
-        }
-    } catch (error) {
-        console.error('导入自定义卡牌失败:', error);
-        showToast('导入失败，请检查文件格式', 'error');
-    }
-}
-
-// ==================== 卡牌包功能 ====================
-
-function openCardPackModal() {
-    if (!elements.cardPackModal || !elements.cardPackContainer) return;
-
-    renderCardPackManager({
-        container: elements.cardPackContainer,
-        onActivate: handleActivateCardPack,
-        onDeactivate: handleDeactivateCardPack,
-        onImport: handleImportCardPack,
-        onExport: handleExportCardPack,
-        onDelete: handleDeleteCardPack,
-        onPreview: handlePreviewCardPack
-    });
-
-    elements.cardPackModal.classList.add('active');
-}
-
-function closeCardPackModal() {
-    if (elements.cardPackModal) {
-        elements.cardPackModal.classList.remove('active');
-    }
-}
-
-function handleActivateCardPack(packId) {
-    setActiveCardPack(packId);
-    state.cardPacks = getAllCardPacks();
-    openCardPackModal(); // 刷新
-    showToast('卡牌包已激活', 'success');
-}
-
-function handleDeactivateCardPack() {
-    clearActiveCardPack();
-    state.cardPacks = getAllCardPacks();
-    openCardPackModal(); // 刷新
-    showToast('已恢复默认卡牌', 'success');
-}
-
-async function handleDeleteCardPack(packId) {
-    const confirmed = await showConfirm('确定要删除这个卡牌包吗？此操作不可恢复。');
-    if (!confirmed) return;
-
-    const success = deleteCardPack(packId);
-    if (success) {
-        state.cardPacks = getAllCardPacks();
-        openCardPackModal(); // 刷新
-        showToast('卡牌包已删除', 'success');
-    } else {
-        showToast('删除失败，请重试', 'error');
-    }
-}
-
-function handleExportCardPack(packId) {
-    const success = downloadCardPack(packId);
-    if (success) {
-        showToast('卡牌包导出成功', 'success');
-    } else {
-        showToast('导出失败，请重试', 'error');
-    }
-}
-
-async function handleImportCardPack(file) {
-    try {
-        const text = await file.text();
-        const result = importCardPackFromJSON(text);
-
-        if (result) {
-            state.cardPacks = getAllCardPacks();
-            openCardPackModal(); // 刷新
-            showToast(`卡牌包 "${result.name}" 导入成功`, 'success');
-        } else {
-            showToast('导入失败，请检查文件格式', 'error');
-        }
-    } catch (error) {
-        console.error('导入卡牌包失败:', error);
-        showToast('导入失败，请检查文件格式', 'error');
-    }
-}
-
-function handlePreviewCardPack(packId) {
-    const pack = getAllCardPacks().find(p => p.id === packId);
-    if (!pack) return;
-
-    // 在卡牌包容器中显示预览
-    renderCardPackPreview({
-        container: elements.cardPackContainer,
-        pack,
-        onClose: () => openCardPackModal() // 返回列表
-    });
 }
 
 // ==================== 每日推荐功能 ====================
@@ -1106,8 +847,7 @@ function initDailyCard() {
     if (!elements.dailyCardContainer) return;
 
     // 获取今日卡牌但不自动抽取
-    const fullCardPool = getFullCardPool(cards);
-    const todayCard = getTodayCard(fullCardPool);
+    const todayCard = getTodayCard(cards);
 
     renderDailyCardSection({
         container: elements.dailyCardContainer,
@@ -1335,6 +1075,9 @@ function stopVoiceInput() {
 }
 
 function init() {
+    // 迁移旧命名空间（heartTalk* → bible*），解除与心语卡牌的串台
+    migrateLegacyStorage();
+
     applyTheme(getStoredTheme());
     refreshCardView();
     refreshHistoryView();

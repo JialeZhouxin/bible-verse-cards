@@ -7,11 +7,10 @@ import { generateHistoryStats } from './history-filter.js';
 /**
  * 生成历史记录纪念册图片
  * @param {Array} history - 历史记录数组
- * @param {Object} categoryNames - 类别名称映射
- * @param {Object} levelNames - 难度名称映射
+ * @param {Object} categoryNames - 主题名称映射
  * @returns {Promise<string>} 图片DataURL
  */
-export async function generateHistoryAlbumImage(history, categoryNames, levelNames) {
+export async function generateHistoryAlbumImage(history, categoryNames) {
     if (!history.length) {
         throw new Error('没有历史记录可导出');
     }
@@ -80,13 +79,13 @@ export async function generateHistoryAlbumImage(history, categoryNames, levelNam
 
             <!-- 历史记录列表 -->
             <div>
-                <h2 style="font-size: 24px; color: #333; margin: 0 0 25px 0;">💭 对话记录</h2>
+                <h2 style="font-size: 24px; color: #333; margin: 0 0 25px 0;">💭 灵修记录</h2>
     `;
 
     // 添加每条记录
     history.slice(0, 20).forEach((item, index) => {
-        const categoryName = categoryNames[item.card.category] || item.card.category;
-        const levelName = levelNames[String(item.card.level)] || `第${item.card.level}级`;
+        const card = item.card || {};
+        const categoryName = categoryNames[card.category] || card.category || '';
         
         albumHTML += `
             <div style="
@@ -100,7 +99,7 @@ export async function generateHistoryAlbumImage(history, categoryNames, levelNam
                     <span style="
                         font-size: 12px;
                         color: #fff;
-                        background: ${getCategoryColor(item.card.category)};
+                        background: ${getCategoryColor(card.category)};
                         padding: 4px 12px;
                         border-radius: 20px;
                     ">${categoryName}</span>
@@ -112,7 +111,12 @@ export async function generateHistoryAlbumImage(history, categoryNames, levelNam
                     font-weight: 600;
                     margin-bottom: 10px;
                     line-height: 1.5;
-                ">Q: ${item.card.question}</div>
+                ">${escapeHtml(card.text || '')}</div>
+                <div style="
+                    font-size: 13px;
+                    color: #8a7561;
+                    margin-bottom: 10px;
+                ">—— ${escapeHtml(card.reference || '')}</div>
                 <div style="
                     font-size: 14px;
                     color: #555;
@@ -120,7 +124,7 @@ export async function generateHistoryAlbumImage(history, categoryNames, levelNam
                     padding: 12px;
                     background: white;
                     border-radius: 8px;
-                ">A: ${item.answer}</div>
+                ">${escapeHtml(item.answer)}</div>
             </div>
         `;
     });
@@ -145,8 +149,8 @@ export async function generateHistoryAlbumImage(history, categoryNames, levelNam
                 color: #999;
                 font-size: 14px;
             ">
-                <p>用问题打开话匣子，让彼此更靠近一点</p>
-                <p style="margin-top: 10px;">🌿 心语卡牌</p>
+                <p>记录神的话语，数算他的恩典</p>
+                <p style="margin-top: 10px;">📖 圣经金句</p>
             </div>
         </div>
     `;
@@ -187,7 +191,7 @@ export async function generateHistoryAlbumImage(history, categoryNames, levelNam
  */
 export function downloadAlbumImage(dataUrl) {
     const link = document.createElement('a');
-    link.download = `心语卡牌纪念册_${new Date().toISOString().slice(0, 10)}.png`;
+    link.download = `圣经金句灵修记录_${new Date().toISOString().slice(0, 10)}.png`;
     link.href = dataUrl;
     link.click();
 }
@@ -196,27 +200,42 @@ export function downloadAlbumImage(dataUrl) {
  * 生成并下载PDF纪念册
  * @param {Array} history - 历史记录数组
  * @param {Object} categoryNames - 类别名称映射
- * @param {Object} levelNames - 难度名称映射
+ * @param {Object} categoryNames - 主题名称映射
  */
-export async function generatePDFAlbum(history, categoryNames, levelNames) {
+export async function generatePDFAlbum(history, categoryNames) {
     // 由于PDF生成需要额外库，这里先提供图片导出
     // PDF功能可以通过引入 jspdf 或 html2pdf.js 实现
-    const imageData = await generateHistoryAlbumImage(history, categoryNames, levelNames);
+    const imageData = await generateHistoryAlbumImage(history, categoryNames);
     downloadAlbumImage(imageData);
 }
 
 /**
- * 获取类别对应的颜色
- * @param {string} category - 类别代码
+ * 转义 HTML
+ * @param {string} text
+ * @returns {string}
+ */
+function escapeHtml(text) {
+    return String(text == null ? '' : text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+/**
+ * 获取主题对应的颜色
+ * @param {string} category - 主题代码
  * @returns {string} 颜色代码
  */
 function getCategoryColor(category) {
     const colors = {
-        couple: '#e91e63',
-        friend: '#2196f3',
-        family: '#ff9800',
-        self: '#9c27b0',
-        clear_thinking: '#4caf50'
+        comfort: '#4A90E2',
+        love: '#E74C3C',
+        faith: '#9B59B6',
+        strength: '#F39C12',
+        wisdom: '#1ABC9C',
+        forgiveness: '#3498DB',
+        hope: '#E67E22'
     };
     return colors[category] || '#4caf50';
 }
@@ -225,17 +244,17 @@ function getCategoryColor(category) {
  * 批量导出多条记录为图片（分页）
  * @param {Array} history - 历史记录数组
  * @param {Object} categoryNames - 类别名称映射
- * @param {Object} levelNames - 难度名称映射
+ * @param {Object} categoryNames - 主题名称映射
  * @param {number} itemsPerPage - 每页记录数
  * @returns {Promise<string[]>} 图片DataURL数组
  */
-export async function generatePagedAlbumImages(history, categoryNames, levelNames, itemsPerPage = 10) {
+export async function generatePagedAlbumImages(history, categoryNames, itemsPerPage = 10) {
     const images = [];
     const totalPages = Math.ceil(history.length / itemsPerPage);
     
     for (let i = 0; i < totalPages; i++) {
         const pageHistory = history.slice(i * itemsPerPage, (i + 1) * itemsPerPage);
-        const imageData = await generateHistoryAlbumImage(pageHistory, categoryNames, levelNames);
+        const imageData = await generateHistoryAlbumImage(pageHistory, categoryNames);
         images.push(imageData);
     }
     

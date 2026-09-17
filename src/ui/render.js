@@ -5,7 +5,7 @@
     return node;
 }
 
-export function renderCard({ currentCard, categoryNames, levelNames, elements }) {
+export function renderCard({ currentCard, categoryNames, elements }) {
     const {
         emptyState,
         cardContent,
@@ -27,39 +27,38 @@ export function renderCard({ currentCard, categoryNames, levelNames, elements })
     emptyState.style.display = 'none';
     cardContent.style.display = 'block';
     cardCategory.textContent = categoryNames[currentCard.category] || currentCard.category;
-    
-    // 对于圣经金句卡片，显示经文出处作为级别/副标题
-    if (currentCard.text && currentCard.reference) {
-        cardLevel.textContent = currentCard.reference;
-        cardLevel.className = 'card-level verse-reference-label';
-    } else {
-        // 原始问题卡片格式
-        cardLevel.textContent = levelNames[String(currentCard.level)] || `第${currentCard.level}级`;
-        cardLevel.className = `card-level level-${currentCard.level}`;
-    }
-    
-    // 对于圣经金句卡片，显示经文内容和出处
-    if (currentCard.text && currentCard.reference) {
-        //  Bible verse card format
-        cardQuestion.innerHTML = `
-            <div class="verse-text">${currentCard.text}</div>
-            <div class="verse-reference">${currentCard.reference}</div>
-        `;
-    } else {
-        // Original question card format
-        cardQuestion.textContent = currentCard.question;
-    }
-    
+
+    // 副标题显示经文出处
+    cardLevel.textContent = currentCard.reference || '';
+    cardLevel.className = 'card-level verse-reference-label';
+
+    // 正文显示经文原文
+    cardQuestion.innerHTML = `
+        <div class="verse-text">${escapeHtml(currentCard.text)}</div>
+        <div class="verse-reference">${escapeHtml(currentCard.reference)}</div>
+    `;
+
     saveBtn.style.display = 'inline-block';
     shareBtn.style.display = 'inline-block';
 }
 
-export function renderHistory({ history, levelNames, categoryNames, historyList, onEdit, onDelete }) {
+/**
+ * 转义 HTML，防止经文文本破坏标签结构
+ * @param {string} text
+ * @returns {string}
+ */
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text == null ? '' : String(text);
+    return div.innerHTML;
+}
+
+export function renderHistory({ history, categoryNames, historyList, onEdit, onDelete }) {
     historyList.replaceChildren();
 
     if (!history.length) {
         const empty = createElement('div', 'empty-state');
-        empty.appendChild(createElement('p', '', '暂无对话记录'));
+        empty.appendChild(createElement('p', '', '暂无灵修记录'));
         historyList.appendChild(empty);
         return;
     }
@@ -91,26 +90,29 @@ export function renderHistory({ history, levelNames, categoryNames, historyList,
         header.appendChild(actions);
         wrapper.appendChild(header);
 
-        // 类别和难度标签
+        // 主题标签 + 经文出处（容忍旧数据里缺失 card 的记录）
+        const card = item.card || {};
         const tagsRow = createElement('div', 'history-item-tags');
-        const categoryName = categoryNames[item.card.category] || item.card.category;
-        const categoryTag = createElement('span', `category-tag category-${item.card.category}`, categoryName);
-        tagsRow.appendChild(categoryTag);
-        
-        // 对于圣经金句卡片，显示经文出处；对于问题卡片，显示级别
-        if (item.card.text && item.card.reference) {
+        if (card.category) {
+            const categoryName = categoryNames[card.category] || card.category;
+            const categoryTag = createElement('span', `category-tag category-${card.category}`, categoryName);
+            tagsRow.appendChild(categoryTag);
+        }
+
+        if (card.reference) {
             const badge = createElement('span', 'level-badge verse-reference-badge');
-            badge.textContent = item.card.reference;
-            tagsRow.appendChild(badge);
-        } else if (item.card.level) {
-            const badge = createElement('span', `level-badge level-${item.card.level}`);
-            badge.textContent = levelNames[String(item.card.level)] || `第${item.card.level}级`;
+            badge.textContent = card.reference;
             tagsRow.appendChild(badge);
         }
-        wrapper.appendChild(tagsRow);
+        if (tagsRow.childNodes.length) {
+            wrapper.appendChild(tagsRow);
+        }
 
-        // 问题和回答
-        wrapper.appendChild(createElement('div', 'question', item.card.question));
+        // 经文原文 + 我的感受
+        if (card.text) {
+            wrapper.appendChild(createElement('div', 'question verse-text', card.text));
+            wrapper.appendChild(createElement('div', 'verse-reference', card.reference || ''));
+        }
         wrapper.appendChild(createElement('div', 'answer', item.answer));
         
         // 如果有更新时间，显示

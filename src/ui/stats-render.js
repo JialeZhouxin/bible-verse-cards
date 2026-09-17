@@ -50,7 +50,7 @@ export function renderStatsOverview({ container, history }) {
  * @param {HTMLElement} params.container - 容器元素
  * @param {Array} params.data - 饼图数据 [{name, value, color}]
  */
-export function renderPieChart({ container, data }) {
+export function renderPieChart({ container, data, title = '分布' }) {
     if (!data || data.length === 0) {
         container.innerHTML = '<div class="chart-empty">暂无数据</div>';
         return;
@@ -107,7 +107,7 @@ export function renderPieChart({ container, data }) {
 
     container.innerHTML = `
         <div class="chart-container">
-            <div class="chart-title">类别分布</div>
+            <div class="chart-title">${title}</div>
             <div class="chart-content">
                 <svg viewBox="0 0 ${size} ${size}" class="pie-chart">
                     ${svgPaths}
@@ -282,14 +282,14 @@ export async function renderFullStatsReport({ container, history, onExportImage 
     container.innerHTML = `
         <div class="stats-report" id="statsReportContent">
             <div class="stats-report-header">
-                <div class="stats-report-title">${report.type.name}</div>
+                <div class="stats-report-title">灵修报告</div>
                 <div class="stats-report-date">生成于 ${report.generatedAt}</div>
             </div>
             <div class="stats-report-body">
                 <div class="stats-overview-section" id="statsOverviewSection"></div>
                 <div class="stats-charts-section">
                     <div class="stats-chart-container" id="categoryChartContainer"></div>
-                    <div class="stats-chart-container" id="levelChartContainer"></div>
+                    <div class="stats-chart-container" id="sourceChartContainer"></div>
                 </div>
                 <div class="stats-activity-section" id="activitySection"></div>
                 <div class="stats-calendar-section" id="calendarSection"></div>
@@ -304,14 +304,14 @@ export async function renderFullStatsReport({ container, history, onExportImage 
     // 渲染各个部分
     const overviewSection = container.querySelector('#statsOverviewSection');
     const categoryChartContainer = container.querySelector('#categoryChartContainer');
-    const levelChartContainer = container.querySelector('#levelChartContainer');
+    const sourceChartContainer = container.querySelector('#sourceChartContainer');
     const activitySection = container.querySelector('#activitySection');
     const calendarSection = container.querySelector('#calendarSection');
     const insightsSection = container.querySelector('#insightsSection');
 
     renderStatsOverview({ container: overviewSection, history });
-    renderPieChart({ container: categoryChartContainer, data: report.categoryDistribution });
-    renderBarChart({ container: levelChartContainer, data: report.levelDistribution, title: '难度分布' });
+    renderPieChart({ container: categoryChartContainer, data: report.categoryDistribution, title: '主题分布' });
+    renderPieChart({ container: sourceChartContainer, data: report.sourceDistribution, title: '记录来源' });
 
     // 动态导入避免循环依赖
     const { calculateDailyActivity } = await import('../core/stats.js');

@@ -3,7 +3,9 @@
  * 管理用户连续打卡天数和打卡历史
  */
 
-const CHECKIN_KEY = 'heartTalkCheckIn';
+import { STORAGE_KEYS } from './storage-migration.js';
+
+const CHECKIN_KEY = STORAGE_KEYS.checkIn;
 
 /**
  * 获取日期字符串 (YYYY-MM-DD)
