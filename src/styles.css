@@ -2899,3 +2899,219 @@ header p {
     }
 }
 
+
+/* ==================== 记一节经文 ==================== */
+
+.verse-note-section {
+    background: var(--paper);
+    border: 1px solid rgba(228, 204, 176, 0.78);
+    border-radius: var(--radius-lg);
+    padding: 18px 18px 16px;
+    margin-top: 18px;
+    text-align: center;
+}
+
+.verse-note-section h3 {
+    font-family: 'Noto Serif SC', 'Songti SC', serif;
+    color: #664327;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.verse-note-hint {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    line-height: 1.6;
+}
+
+.modal-content.verse-note-modal {
+    width: min(640px, 100%);
+    max-height: 86vh;
+    overflow-y: auto;
+}
+
+.verse-note-status {
+    display: none;
+    font-size: 0.88rem;
+    color: var(--accent-strong);
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+}
+
+.verse-note-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.verse-note-tab {
+    flex: 1;
+    min-height: 42px;
+    border: 1px solid rgba(228, 204, 176, 0.9);
+    background: var(--bg-main);
+    color: var(--text-secondary);
+    border-radius: 10px;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.verse-note-tab.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    font-weight: 600;
+}
+
+.verse-note-fields {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.verse-note-fields label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.verse-note-fields select {
+    min-height: 42px;
+    border: 1px solid rgba(228, 204, 176, 0.9);
+    border-radius: 10px;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    padding: 0 10px;
+    font-size: 0.92rem;
+}
+
+.verse-note-preview {
+    min-height: 60px;
+}
+
+.verse-note-preview .vn-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.verse-note-preview .vn-ref {
+    font-size: 0.88rem;
+    color: var(--accent-strong);
+    font-weight: 600;
+    text-align: right;
+    margin-bottom: 14px;
+}
+
+.verse-note-search-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+.verse-note-search-row input[type='search'] {
+    flex: 1 1 200px;
+    min-height: 44px;
+    border: 1px solid rgba(228, 204, 176, 0.9);
+    border-radius: 10px;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    padding: 0 12px;
+    font-size: 0.92rem;
+}
+
+.verse-note-search-row select {
+    min-height: 44px;
+    border: 1px solid rgba(228, 204, 176, 0.9);
+    border-radius: 10px;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    padding: 0 10px;
+    font-size: 0.9rem;
+    max-width: 160px;
+}
+
+.verse-note-results {
+    max-height: 46vh;
+    overflow-y: auto;
+}
+
+.verse-note-hint,
+.verse-note-empty {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    padding: 10px 2px;
+}
+
+.vn-group {
+    margin-bottom: 14px;
+}
+
+.vn-group-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-strong);
+    margin-bottom: 6px;
+    padding-left: 2px;
+}
+
+.vn-result {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgba(228, 204, 176, 0.7);
+    background: var(--bg-main);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    color: var(--text-primary);
+}
+
+.vn-result:hover {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+}
+
+.vn-result-ref {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--accent-strong);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.vn-result-text {
+    display: block;
+    font-size: 0.92rem;
+    line-height: 1.65;
+}
+
+:root[data-theme='dark'] .verse-note-section,
+:root[data-theme='dark'] .vn-result,
+:root[data-theme='dark'] .verse-note-fields select,
+:root[data-theme='dark'] .verse-note-search-row input[type='search'],
+:root[data-theme='dark'] .verse-note-search-row select,
+:root[data-theme='dark'] .verse-note-tab {
+    background: var(--bg-main);
+    border-color: #4a3d31;
+}
+
+@media (max-width: 560px) {
+    .verse-note-fields {
+        grid-template-columns: 1fr 1fr;
+    }
+    .verse-note-search-row select {
+        max-width: none;
+        flex: 1 1 100%;
+    }
+}

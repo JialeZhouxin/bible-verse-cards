@@ -8,6 +8,7 @@ import { renderFullStatsReport } from './ui/stats-render.js';
 import { checkInOnSave, getStreakDays } from './core/check-in.js';
 import { getTodayVerse, nextTodayVerse } from './core/daily-verse-service.js';
 import { renderTodayVerse } from './ui/daily-verse-render.js';
+import { renderVerseNote } from './ui/verse-note-render.js';
 import { migrateLegacyStorage, STORAGE_KEYS } from './core/storage-migration.js';
 import {
     createSpeechSynthesizer,
@@ -107,9 +108,14 @@ const elements = {
     statsModal: document.getElementById('statsModal'),
     statsContainer: document.getElementById('statsContainer'),
     closeStatsBtn: document.getElementById('closeStatsBtn'),
-    // 每日推荐元素
+    // 今日经文元素
     dailyCardSection: document.getElementById('dailyCardSection'),
     dailyCardContainer: document.getElementById('dailyCardContainer'),
+    // 记一节经文元素
+    verseNoteBtn: document.getElementById('verseNoteBtn'),
+    verseNoteModal: document.getElementById('verseNoteModal'),
+    verseNoteContainer: document.getElementById('verseNoteContainer'),
+    closeVerseNoteBtn: document.getElementById('closeVerseNoteBtn'),
     // 语音功能元素
     cardVoiceControls: document.getElementById('cardVoiceControls'),
     saveVoiceWrapper: document.getElementById('saveVoiceWrapper'),
@@ -779,6 +785,19 @@ function setupEventListeners() {
         elements.downloadImageBtn.addEventListener('click', downloadShareImage);
     }
 
+    // 记一节经文事件
+    if (elements.verseNoteBtn) {
+        elements.verseNoteBtn.addEventListener('click', openVerseNoteModal);
+    }
+    if (elements.closeVerseNoteBtn) {
+        elements.closeVerseNoteBtn.addEventListener('click', closeVerseNoteModal);
+    }
+    if (elements.verseNoteModal) {
+        elements.verseNoteModal.addEventListener('click', (event) => {
+            if (event.target === elements.verseNoteModal) closeVerseNoteModal();
+        });
+    }
+
     elements.themeSelector.addEventListener('click', (event) => {
         const button = event.target.closest('[data-theme-choice]');
         if (!button) return;
@@ -816,6 +835,38 @@ function setupEventListeners() {
 }
 
 // ==================== 今日经文 ====================
+
+// ==================== 记一节经文 ====================
+
+function openVerseNoteModal() {
+    if (!elements.verseNoteModal || !elements.verseNoteContainer) return;
+
+    renderVerseNote({
+        container: elements.verseNoteContainer,
+        onPick: (verse) => {
+            closeVerseNoteModal();
+            // 把选中的经文当作当前卡牌，打开「写下感受」
+            state.currentCard = {
+                id: `note-${Date.now()}`,
+                category: 'note',
+                reference: verse.reference,
+                text: verse.text,
+                book: verse.book,
+                chapter: verse.chapter,
+                verse: verse.verse
+            };
+            openSaveModal('note');
+        }
+    });
+
+    elements.verseNoteModal.classList.add('active');
+}
+
+function closeVerseNoteModal() {
+    if (elements.verseNoteModal) {
+        elements.verseNoteModal.classList.remove('active');
+    }
+}
 
 function initTodayVerse() {
     if (!elements.dailyCardContainer) return;
