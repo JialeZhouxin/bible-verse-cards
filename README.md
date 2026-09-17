@@ -1,3 +1,15 @@
+# 已归档
+
+本应用已并入 [heart-talk-cards](https://github.com/JialeZhouxin/heart-talk-cards)
+仓库的 `bible/` 目录，与心语卡牌、婚前辅导等工具一起，从一个工具箱首页进入。
+
+**新地址：https://jialezhouxin.github.io/heart-talk-cards/bible/**
+
+本仓库归档保留只读，旧网址（https://jialezhouxin.github.io/bible-verse-cards/）
+仍然可以访问，但不再更新。后续开发请到新仓库。
+
+---
+
 # 圣经金句 · 灵修记录
 
 > 抽一节经文，写下触动你的话。
