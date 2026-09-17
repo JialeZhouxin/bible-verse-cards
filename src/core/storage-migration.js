@@ -9,6 +9,11 @@
  * 1. 提供 bible* 命名空间的新 key（STORAGE_KEYS）
  * 2. 首次启动时把 heartTalk* 里的圣经记录迁移到 bible*，并把旧 key 里
  *    属于心语卡牌的记录留下（不删），解除串台
+ *
+ * 原则：**凡心语卡牌还在用的 key，一律只复制、不删除。**
+ * 已确认心语卡牌仍在读 heartTalkHistory 与 heartTalkTheme，故这两个 key
+ * 无论内容如何都保留；heartTalkCheckIn / heartTalkDailyCard 心语卡牌不用，
+ * 搬完即删。
  */
 
 export const STORAGE_KEYS = {
@@ -110,16 +115,19 @@ export function migrateLegacyStorage() {
             }
         }
 
-        // ---- 主题：只在新 key 缺失时继承 ----
+        // ---- 主题：继承旧值，但**不删旧 key** ----
+        // 背景：heartTalkTheme 这个 key 心语卡牌自己还在用（heart-talk/src/main.js）。
+        // 两个应用同源，删了它会把心语卡牌的主题设置一并抹掉。
+        // 所以这里只「复制一份」过来，旧 key 留给心语卡牌。
         if (!localStorage.getItem(STORAGE_KEYS.theme)) {
             const legacyTheme = localStorage.getItem(LEGACY_KEYS.theme);
             if (legacyTheme) {
                 localStorage.setItem(STORAGE_KEYS.theme, legacyTheme);
             }
         }
-        localStorage.removeItem(LEGACY_KEYS.theme);
 
         // ---- 打卡 / 每日卡牌：整体搬运，然后删旧 key ----
+        // 这两个 key 心语卡牌完全不用，可以安全清掉。
         [
             [LEGACY_KEYS.checkIn, STORAGE_KEYS.checkIn],
             [LEGACY_KEYS.dailyCard, STORAGE_KEYS.dailyCard]
