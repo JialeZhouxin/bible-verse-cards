@@ -6,11 +6,8 @@ import { generateHistoryAlbumImage, downloadAlbumImage } from './core/history-ex
 import { renderCard, renderHistory, renderHistoryFilters, renderExportControls } from './ui/render.js';
 import { renderFullStatsReport } from './ui/stats-render.js';
 import { checkInOnSave, getStreakDays } from './core/check-in.js';
-import {
-    getTodayCard, markTodayCardAnswered, getDailyCardStatus,
-    getDailyCardStreak, getRecentDailyStatus
-} from './core/daily-card-service.js';
-import { renderDailyCardSection } from './ui/daily-card-render.js';
+import { getTodayVerse, nextTodayVerse } from './core/daily-verse-service.js';
+import { renderTodayVerse } from './ui/daily-verse-render.js';
 import { migrateLegacyStorage, STORAGE_KEYS } from './core/storage-migration.js';
 import {
     createSpeechSynthesizer,
@@ -356,24 +353,6 @@ function drawCard() {
     elements.cardContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-/**
- * 抽取今日卡牌
- */
-function drawTodayCard() {
-    const todayCard = getTodayCard(cards);
-
-    if (!todayCard) {
-        showToast('获取今日卡牌失败', 'error');
-        return;
-    }
-
-    state.currentCard = todayCard;
-    state.todayCard = todayCard;
-    refreshCardView();
-    elements.cardContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    showToast('🌟 今日推荐卡牌', 'success');
-}
-
 function openSaveModal(source = 'draw') {
     if (!state.currentCard) return;
     state.pendingSource = source;
@@ -420,11 +399,6 @@ function saveAnswer() {
 
     refreshHistoryView();
     closeSaveModal();
-
-    // 检查是否是今日卡牌
-    if (state.currentCard.isDailyCard) {
-        markTodayCardAnswered();
-    }
 
     // 打卡
     const checkInResult = checkInOnSave();
@@ -841,25 +815,50 @@ function setupEventListeners() {
 
 }
 
-// ==================== 每日推荐功能 ====================
+// ==================== 今日经文 ====================
 
-function initDailyCard() {
+function initTodayVerse() {
     if (!elements.dailyCardContainer) return;
 
-    // 获取今日卡牌但不自动抽取
-    const todayCard = getTodayCard(cards);
-
-    renderDailyCardSection({
+    renderTodayVerse({
         container: elements.dailyCardContainer,
-        todayCard,
-        onDraw: () => drawTodayCard(),
-        onAnswer: () => openSaveModal()
+        verse: getTodayVerse(cards),
+        history: state.history,
+        streak: getStreakDays(),
+        onAnswer: () => openTodayVerseSave(),
+        onNext: () => handleNextVerse()
     });
 }
 
+/**
+ * 打开「写下感受」——把今日经文设为当前卡牌，来源记为 daily
+ */
+function openTodayVerseSave() {
+    const verse = getTodayVerse(cards);
+    if (!verse) {
+        showToast('暂时取不到今日经文', 'error');
+        return;
+    }
+    state.currentCard = verse;
+    openSaveModal('daily');
+}
+
+/**
+ * 换一句
+ */
+function handleNextVerse() {
+    const verse = nextTodayVerse(cards);
+    if (!verse) {
+        showToast('暂时取不到今日经文', 'error');
+        return;
+    }
+    state.currentCard = verse;
+    initTodayVerse();
+    showToast('已换一句', 'success');
+}
+
 function refreshDailyCardView() {
-    if (!elements.dailyCardContainer) return;
-    initDailyCard();
+    initTodayVerse();
 }
 
 // ==================== 语音功能 ====================
@@ -1103,8 +1102,8 @@ function init() {
         });
     }
 
-    // 初始化每日推荐
-    initDailyCard();
+    // 初始化今日经文
+    initTodayVerse();
 
     // 初始化语音服务
     initVoiceService();

@@ -1994,8 +1994,28 @@ header p {
     font-weight: 500;
 }
 
+/* 今日经文的经文原文与出处 */
+.daily-verse-body {
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: var(--text-primary);
+    margin: 10px 0 12px;
+    letter-spacing: 0.02em;
+}
+
+.daily-verse-ref {
+    font-size: 0.9rem;
+    color: var(--accent-strong);
+    font-weight: 600;
+    text-align: right;
+    margin-bottom: 4px;
+}
+
 .daily-card-actions {
     margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .btn-daily {
